@@ -1,0 +1,8 @@
+{% set isLanding = app.request.get('_route') == 'homepage' %}
+{% set ns = 'imigize-app-navigation' %}
+
+{% if not isLanding %}
+<div class="{{ ns }}">
+    <a class="{{ ns }}-link" href="{{ path('homepage') }}">Назад</a>
+</div>
+{% endif %}

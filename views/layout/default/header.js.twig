@@ -1,0 +1,118 @@
+document.addEventListener("DOMContentLoaded", function() {
+    var Header = {
+        init: function() {
+            var me = this;
+
+            me.ns = 'imigize-app-header';
+
+            me.$headerSearchlink = $('.' + me.ns + '-search');
+            me.$headerInput = $('.' + me.ns + '-content-search');
+            me.$profile = $('.' + me.ns + '-profile');
+            me.$personalIcon = $('.' + me.ns + '-personal');
+            me.$personalLinkFooter = $('.imigize-app-footer-menu-link__toProfile');
+
+            me.$overlay = $('.overlay');
+
+            me.$chinaComingSoon = $('.' + me.ns + '-china-coming-soon');
+
+            me.$statisticLink = $('.' + me.ns + '-statistic');
+            me.$newsLink = $('.' + me.ns + '-news');
+            me.frame1All = $('.imigize-cooperation-frame1-all');
+            me.frame2 = $('.imigize-cooperation-frame2');
+            me.linkLocaleChange = $('.' + me.ns + '-link-local-change');
+
+            me.binds();
+        },
+
+        binds: function() {
+            var me = this;
+
+            me.$headerSearchlink.on('click', me.onSearchClick.bind(me));
+            me.$personalIcon.on('click', me.onPersonalIconClick.bind(me));
+            me.$personalLinkFooter.on('click', me.onPersonalLinkFooterClick.bind(me));
+
+            me.$overlay.on('click', me.onOverlayClick.bind(me));
+
+
+            me.$statisticLink.on('click', me.onStatisticLinkClick.bind(me));
+
+
+            me.$newsLink.on('click', me.onNewsLinkClick.bind(me));
+
+            me.linkLocaleChange.on('click', me.onLinkLocaleChangeClick.bind(me));
+
+
+            try {
+                Imigize.catalog.model.UserModel.on('loginRequired', me.onLoginRequired.bind(me));
+            } catch (e) {
+            }
+
+        },
+
+        onLinkLocaleChangeClick: function(e) {
+            var me = this, locale = e.target.getAttribute('data-locale');
+            if (locale == 'cn') {
+                me.$chinaComingSoon.show().appendTo('body').css($('[data-locale=cn]').offset());
+                setTimeout(function() {
+                    me.$chinaComingSoon.hide();
+                }, 10000);
+                return;
+            }
+            location.href = '{{ path('locale_set_action') }}?l=' + locale;
+        },
+
+        onStatisticLinkClick: function(e) {
+            e.preventDefault();
+            if (!this.frame1All.offset()) {
+                return
+            }
+            $('html, body').animate({scrollTop: this.frame1All.offset().top}, 500);
+        },
+
+        onNewsLinkClick: function(e) {
+            e.preventDefault();
+            if (!this.frame2.offset()) {
+               return
+            }
+            $('html, body').animate({scrollTop: this.frame2.offset().top}, 500);
+        },
+
+        onSearchClick: function(e) {
+            e.preventDefault();
+            this.$headerInput.toggle();
+        },
+
+        onPersonalIconClick: function(e) {
+            e.preventDefault();
+
+            location.href = '{{ path('profile') }}';
+        },
+
+        onOverlayClick: function() {
+            var me = this;
+
+            me.$profile.hide();
+            me.$overlay.hide();
+        },
+
+        onPersonalLinkFooterClick: function(e) {
+            var me = this;
+
+            me.onPersonalIconClick(e);
+
+            $('html, body').animate({scrollTop: me.$profile.offset().top}, 500);
+        },
+
+        onLoginRequired: function() {
+            var me = this;
+            me.onPersonalLinkFooterClick({
+                preventDefault: function() {
+                }
+            });
+        }
+
+
+    };
+
+    Header.init();
+});

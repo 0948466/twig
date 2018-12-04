@@ -1,0 +1,56 @@
+#{$ns}-icon-back-link {
+    position: absolute;
+    left: 36px;
+    height: 20px;
+    width: 23px;
+}
+#{$ns}-icon-back {
+    position: absolute;
+    top:0;
+    left: 50%;
+    width: 3px;
+    height: 20px;
+    background-color: #31d0e7;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    cursor: pointer;
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 11px;
+        margin-left: 4px;
+        width: 3px;
+        height: 13px;
+        background-color: #31d0e7;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 11px;
+        margin-left: -4px;
+        width: 3px;
+        height: 13px;
+        display: block;
+        background-color: #31d0e7;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+}
+
+@media only screen and (max-device-width: 1019px) {
+    #{$ns}-icon-back-link {
+        top: 25px;
+    }
+}
+
+@media only screen and (min-device-width: 1020px) {
+    #{$ns}-icon-back-link {
+        top: 76px;
+    }
+}

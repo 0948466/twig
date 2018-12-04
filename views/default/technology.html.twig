@@ -1,0 +1,18 @@
+{% extends '::layout/default.html.twig' %}
+
+{% block body %}
+    <div id="imigize-technology"></div>
+
+{% endblock %}
+
+{% block javascriptsBase %}
+    {{ parent() }}
+
+    <script>
+        Imigize.create('Imigize.landing.TechnologyRendered', {
+            urls: {index: "{{ path('homepage') }}"},
+            locale: "{{ app.request.locale }}"
+        }, {{ landingData|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw }});
+    </script>
+
+{% endblock %}

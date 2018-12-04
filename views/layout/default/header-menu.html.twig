@@ -1,0 +1,19 @@
+{% set route = app.request.get('_route') %}
+{% set ns = 'imigize-app-singlePage-menu' %}
+{% set modificator = (route == 'homepage') ? ns ~ '__landing' : ns ~ '__default' %}
+{% set items = [
+] %}
+<ul class="{{ ns }} {{ modificator }}">
+    {% for item in items %}
+    <li class="
+        {{ ns }}-item
+        {{ item.modificator is defined ? ns ~ '-item__' ~ item.modificator : '' }}
+        "><a
+            class="{{ ns }}-item-link"
+            href="{{ item.route is defined ? path(item.route) ~ (item.query is defined ? item.query : '') : '#' }}"
+        >{{ item.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% include ':layout/default:personal.html.twig' %}

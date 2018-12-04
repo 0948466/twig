@@ -1,0 +1,172 @@
+$ns: '.imigize-app-sidebar';
+
+#{$ns} {
+    position: relative;
+}
+
+#{$ns}-right {
+    padding: 0 8px;
+    width: 77px;
+    box-sizing: border-box;
+    background-color: #fff;
+    z-index: 12;
+    a {
+        font-size: 11px;
+        font-weight: normal;
+        line-height: 1.82;
+        letter-spacing: 0.5px;
+        color: #3d3d3d;
+        text-decoration: none;
+    }
+}
+
+#{$ns}-right-icon {
+    text-align: center;
+}
+
+#{$ns}-icon {
+    display: block;
+    padding: 50px 0 10px 0;
+    margin-top: 60px;
+    &:hover {
+        background-color: #84e1ee;
+        border-radius: 6px;
+    }
+}
+
+#{$ns}-favorites {
+    background-image: image-url("sidebar/favorites.svg");
+    background-position: 20px 15px;
+    background-repeat: no-repeat;
+}
+
+#{$ns}-shopping-cart {
+    background-image: image-url("sidebar/cart.svg");
+    background-position: 25px 15px;
+    background-repeat: no-repeat;
+    padding: 50px 0 10px 0;
+}
+
+#{$ns}-cart-products {
+    margin: 0 auto;
+    width: 21px;
+    height: 21px;
+    background-color: #d0f6e5;
+    border-radius: 50%;
+}
+
+#{$ns}-sub-right {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    padding: 2em 4.5em;
+    width: 144px;
+    min-height: 270px;
+    opacity: 0.95;
+    background-color: #f3f3f3;
+    z-index: 20;
+}
+
+#{$ns}-sub-right-menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    a {
+        @include responsiveFont(20px, 15px);
+        font-weight: normal;
+        line-height: 3;
+        letter-spacing: 2px;
+        color: #4d4d4d;
+        text-decoration: none;
+        &:hover {
+            color: #32d0e7;
+        }
+    }
+}
+
+#{$ns}-right-menu {
+    position: relative;
+    margin-top: 28px;
+    padding-top: 10px;
+    display: block;
+    height: 28px;
+}
+
+#{$ns}-icon-right-menu,
+#{$ns}-icon-right-menu::before,
+#{$ns}-icon-right-menu::after {
+    position: relative;
+    margin: 0 auto;
+    width: 27px;
+    height: 2px;
+    background-color: #797979;
+}
+
+#{$ns}-right-menu:hover {
+    #{$ns}-icon-right-menu,
+    #{$ns}-icon-right-menu::before,
+    #{$ns}-icon-right-menu::after,
+    #{$ns}-sub-sidebar-close-icon::before,
+    #{$ns}-sub-sidebar-close-icon::after {
+        background-color: #32d0e7;
+    }
+}
+
+#{$ns}-icon-right-menu::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 0;
+}
+
+#{$ns}-icon-right-menu::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 0;
+}
+
+#{$ns}-sub-sidebar-close-icon {
+    position: relative;
+    display: none;
+    margin: 0 auto;
+    width: 27px;
+    height: 27px;
+    font-size: 0;
+    background-color: #fff;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    &::before,
+    &::after {
+        content: "";
+        top: 6px;
+        left: 2px;
+        position: absolute;
+        width: 24px;
+        height: 1.6px;
+        background-color: #848484;
+    }
+    &::before {
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    &::after {
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+}
+
+#{$ns}-personal {
+    text-align: center;
+    background-image: image-url("sidebar/profile.svg");
+    background-position: 48px 15px;
+    background-repeat: no-repeat;
+}
+
+#{$ns}-link-for-myID {
+    cursor: pointer;
+}

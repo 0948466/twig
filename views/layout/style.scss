@@ -1,0 +1,58 @@
+$ns: '.imigize-app-body';
+
+html {
+    min-height: 100%;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.hidden {
+    display: none;
+}
+
+#{$ns} {
+    position: relative;
+    background-color: #f0f0f0;
+    @include font-OpenSans('light');
+    font-size: 14px;
+    min-height: 100%;
+    width: 100%;
+}
+
+#{$ns}-inner {
+    background-color: #efefef;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    box-sizing: border-box;
+}
+
+#{$ns}-content {
+    padding-bottom: #{$footer-height + 50px};
+}
+
+@media only screen and (min-device-width: 1191px) {
+    #{$ns}-inner {
+        min-width: 1191px;
+        max-width: 1690px;
+    }
+
+    .main-navigation {
+        margin: 0 auto;
+        width: 60%;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-device-width : 767px) {
+    #{$ns}-inner {
+        min-width: 320px;
+        max-width: 767px;
+    }
+}
+
+@import "default__default";

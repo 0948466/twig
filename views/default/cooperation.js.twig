@@ -1,0 +1,387 @@
+document.addEventListener("DOMContentLoaded", function() {
+    var Cooperation = {
+        init: function(ns) {
+            var me = this;
+
+            me.ns = 'imigize-cooperation';
+
+            me.$body = $('body');
+
+            me.access = {{ access | json_encode | raw }};
+            if (me.access) {
+                me.hashLink = window.location.hash.replace('#', '');
+            }
+
+            me.todayDate = $('.' + me.ns + '-today-date');
+            me.afterDate = $('.' + me.ns + '-after-date-span');
+            me.week = $('.' + me.ns + '-week');
+
+            me.frame2 = $('.' + me.ns + '-frame2');
+
+            me.linkForForm = $('.' + me.ns + '-link-for-form');
+            me.linkForEntrance = $('.' + me.ns + '-link-for-entrance-arrow');
+
+            me.NewsItem = $('.' + me.ns + '-frame2-news-item');
+
+            me.itemImg = $('.' + me.ns + '-frame2-news-item-img');
+            me.CLASS_ITEM_IMG = (me.ns + '-frame2-news-item-img');
+
+            me.form = $('.' + me.ns + '-form');
+
+            me.needLogin = $('.' + me.ns + '-needLogin');
+            me.needLoginForm = $('.' + me.ns + '-needLogin-form');
+            me.needLoginCong = $('.' + me.ns + '-needLogin-congratulations ');
+
+            me.frame1a = $('.' + me.ns + '-frame1a');
+            me.frame1b = $('.' + me.ns + '-frame1b');
+
+            me.frame1Btn = $('.' + me.ns + '-frame1-btn');
+            me.CLASS_BTN_LEFT = (me.ns + '-frame1-btn-left');
+            me.CLASS_BTN_ACTIVE = (me.ns + '-frame1-btn-active');
+
+            me.frame1BtnLeft = $('.' + me.ns + '-frame1-btn-left');
+            me.frame1BtnRight = $('.' + me.ns + '-frame1-btn-right');
+
+            me.newsLink = $('.' + me.ns + '-frame2-news-item-link');
+
+            me.paginator = $('.' + me.ns + '-frame2-news-paginator');
+
+            me.paginatorBtnPage = $('.' + me.ns + '-frame2-news-paginator-btn-page');
+            me.CLASS_PAGIN_BTN = me.ns + '-frame2-news-paginator-btn-page';
+            me.CLASS_PAGINATOR_ACTIVE = me.ns + '-frame2-news-paginator-current';
+            me.CLASS_POINT = me.ns + '-frame2-news-paginator-point';
+            me.CLASS_POINT1 = me.ns + '-frame2-news-paginator-point1';
+            me.CLASS_POINT2 = me.ns + '-frame2-news-paginator-point2';
+
+            me.arrowLeft = $('.' + me.ns + '-frame2-news-all-arrow-left');
+            me.arrowRight = $('.' + me.ns + '-frame2-news-all-arrow-right');
+
+            me.currentPage = 1;
+
+            me.initPage();
+            me.initDate();
+            me.binds();
+
+            me.news = {{ news | json_encode | raw }};
+
+            if (me.hashLink) {
+                me.onNewsLinkClick();
+                me.onLinkForNewsClick(0, +me.hashLink);
+            }
+        },
+
+        binds: function() {
+            var me = this,
+                $window = Imigize.$window();
+
+            me.linkForForm.on('click', me.onLinkForFormsClick.bind(me));
+
+            me.linkForEntrance.on('click', me.onLinkForEntranceClick.bind(me));
+
+            me.frame1Btn.on('click', me.onFrame1BtnClick.bind(me));
+
+            me.NewsItem.on('click', me.onLinkForNewsClick.bind(me));
+
+            me.$body.on('click', '.' + me.CLASS_PAGIN_BTN, me._onPaginatorBtnPageClick.bind(me));
+
+            me.arrowLeft.on('click', me.onArrowLeftClick.bind(me));
+            me.arrowRight.on('click', me.onArrowRightClick.bind(me));
+
+            me.needLoginForm.on('submit', me.onNeedLoginFormSubmit.bind(me));
+
+            $window.on('resize', me.initPage.bind(me));
+
+        },
+
+        initPage: function() {
+            var me = this, i, cloneBtn, clonePoint, num,
+                $point = $('<div>..</div>').addClass(me.CLASS_POINT),
+                $window = Imigize.$window(),
+                allPages, paginBtn;
+
+            switch (true) {
+                case $window.width() < 826:
+                    num = 1;
+                    break;
+                case $window.width() < 1229:
+                    num = 2;
+                    break;
+                default:
+                    num = 3;
+            }
+
+            allPages = Math.ceil(me.NewsItem.length / num);
+
+            me.paginator.empty();
+
+            me.paginatorBtnPage.appendTo(me.paginator);
+            me.paginatorBtnPage.removeClass(me.CLASS_PAGINATOR_ACTIVE);
+
+            if (allPages < 6) {
+                for (i = 2; i <= allPages; i++) {
+                    cloneBtn = me.paginatorBtnPage.clone();
+                    cloneBtn.text(i);
+                    cloneBtn.appendTo(me.paginator);
+                }
+            }
+
+            if (allPages >= 6) {
+
+                clonePoint = $point.clone();
+                clonePoint.addClass(me.CLASS_POINT1).hide();
+                clonePoint.appendTo(me.paginator);
+
+                for (i = 2; i < allPages; i++) {
+                    cloneBtn = me.paginatorBtnPage.clone();
+                    cloneBtn.text(i);
+                    cloneBtn.appendTo(me.paginator);
+                }
+
+                clonePoint = $point.clone();
+                clonePoint.addClass(me.CLASS_POINT2);
+                clonePoint.appendTo(me.paginator);
+
+                cloneBtn = me.paginatorBtnPage.clone();
+                cloneBtn.text(allPages);
+                cloneBtn.appendTo(me.paginator);
+
+                paginBtn = $('.' + me.CLASS_PAGIN_BTN);
+
+                for (i = 0; i < paginBtn.length - 1; i++) {
+                    paginBtn.eq(i).hide();
+                }
+                paginBtn.eq(paginBtn.currentPage + 1).show();
+                paginBtn.eq(me.currentPage).show();
+                paginBtn.eq(me.currentPage - 2).show();
+                paginBtn.eq(0).show();
+            }
+
+
+            paginBtn = $('.' + me.CLASS_PAGIN_BTN);
+
+            paginBtn.eq(me.currentPage - 1).addClass(me.CLASS_PAGINATOR_ACTIVE);
+            paginBtn.eq(me.currentPage - 1).show();
+
+        },
+
+        initDate: function() {
+            var me = this, date, options, dateStart, dateTime,
+                oneDay = 1000 * 60 * 60 * 24;
+
+            date = new Date();
+            options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+
+            me.todayDate.text('{{ "Сегодня "| trans }}' + date.toLocaleString('{{ app.request.locale }}', options));
+
+            dateStart = new Date(2016, 09, 14);
+            dateTime = (( +date - +dateStart ) / oneDay).toFixed(0);
+
+            me.afterDate.text(dateTime);
+
+            me.initWeek();
+        },
+
+        initWeek: function() {
+            Date.prototype.getWeek = function() {
+                var target = new Date(this.valueOf());
+                var dayNr = (this.getDay() + 6) % 7;
+                target.setDate(target.getDate() - dayNr + 3);
+                var firstThursday = target.valueOf();
+                target.setMonth(0, 1);
+                if (target.getDay() != 4) {
+                    target.setMonth(0, 1 + ((4 - target.getDay()) + 7) % 7);
+                }
+                return 1 + Math.ceil((firstThursday - target) / 604800000);
+            };
+
+            var nw = new Date().toJSON().slice(0, 10);
+            this.week.text(new Date(nw).getWeek() + ' {{ "неделя"| trans }}');
+        },
+
+        onNeedLoginFormSubmit: function(e) {
+            var me = this, data, url = me.needLoginForm.attr('action');
+            e.preventDefault();
+            data = me.needLoginForm.serializeArray();
+            $.post(url, data);
+            me.needLoginForm.hide();
+            me.needLoginCong.show();
+        },
+
+        onArrowLeftClick: function(e) {
+            var me = this, arrow = -1;
+            e.preventDefault();
+            me.page(0, arrow)
+        },
+
+        onArrowRightClick: function(e) {
+            var me = this, arrow = 1;
+            e.preventDefault();
+            me.page(0, arrow)
+        },
+
+        _onPaginatorBtnPageClick: function(e) {
+            e.preventDefault();
+            var me = this,
+                target = (e.target),
+                inner = (target.innerText);
+            me.page(+inner);
+        },
+
+        page: function(targetPage, arrow) {
+            var me = this, i, allPages, currentNewsFirst, currentNewsLast, newsItem, paginBtn, num,
+                btn1 = $('.' + me.CLASS_POINT1),
+                btn2 = $('.' + me.CLASS_POINT2),
+                $window = Imigize.$window();
+
+            switch (true) {
+                case $window.width() < 826:
+                    num = 1;
+                    break;
+                case $window.width() < 1229:
+                    num = 2;
+                    break;
+                default:
+                    num = 3;
+            }
+
+            if (typeof allPages === "undefined") {
+                allPages = Math.ceil(me.NewsItem.length / num);
+            }
+
+            if (arrow) {
+                me.currentPage += arrow;
+
+                if (me.currentPage == 0) {
+                    me.currentPage = 1;
+                }
+
+                if (me.currentPage > allPages) {
+                    me.currentPage = allPages;
+                }
+            }
+            if (!arrow) {
+                me.currentPage = targetPage;
+            }
+
+            currentNewsFirst = me.currentPage * num - num;
+            currentNewsLast = me.currentPage * num;
+            me.NewsItem.hide();
+
+            for (i = 0; i <= me.NewsItem.length; i++) {
+                if (i < currentNewsLast && i >= currentNewsFirst) {
+                    newsItem = $(me.NewsItem[i]);
+                    newsItem.css('display', 'inline-block');
+                }
+            }
+
+            paginBtn = $('.' + me.CLASS_PAGIN_BTN);
+
+            paginBtn.removeClass(me.CLASS_PAGINATOR_ACTIVE);
+            paginBtn.eq(me.currentPage - 1).addClass(me.CLASS_PAGINATOR_ACTIVE);
+
+            if (allPages >= 6) {
+                for (i = 0; i < paginBtn.length - 1; i++) {
+                    paginBtn.eq(i).hide();
+
+                    if (me.currentPage >= paginBtn.length - 2) {
+                        btn2.hide();
+                    }
+                    else {
+                        btn2.show();
+                    }
+
+                    if (me.currentPage <= 3) {
+                        btn1.hide();
+                    }
+                    else {
+                        btn1.show();
+                    }
+
+
+                }
+                paginBtn.eq(me.currentPage).show();
+                paginBtn.eq(me.currentPage - 2).show();
+                paginBtn.eq(0).show();
+            }
+
+            paginBtn.eq(me.currentPage - 1).addClass(me.CLASS_PAGINATOR_ACTIVE);
+            paginBtn.eq(me.currentPage - 1).show();
+        },
+
+        onFrame1BtnClick: function(e) {
+            e.preventDefault();
+            var me = this,
+                target = $(e.currentTarget);
+
+            if (target.hasClass(me.CLASS_BTN_LEFT)) {
+                me.frame1a.show();
+                me.frame1b.hide();
+                me.frame1BtnLeft.addClass(me.CLASS_BTN_ACTIVE);
+                me.frame1BtnRight.removeClass(me.CLASS_BTN_ACTIVE);
+
+            }
+            else {
+                me.frame1a.hide();
+                me.frame1b.show();
+                me.frame1BtnLeft.removeClass(me.CLASS_BTN_ACTIVE);
+                me.frame1BtnRight.addClass(me.CLASS_BTN_ACTIVE);
+            }
+        },
+
+        onLinkForFormsClick: function(e) {
+            var me = this;
+            e.preventDefault();
+            me.needLogin.hide();
+            me.needLoginForm.show();
+        },
+
+        onLinkForEntranceClick: function(e) {
+            var me = this;
+            e.preventDefault();
+            me.needLogin.show();
+            me.needLoginForm.hide();
+            if (!(me.needLoginCong.attr('display') == 'none')) {
+                me.needLoginCong.hide();
+            }
+        },
+
+        onLinkForNewsClick: function(e, data) {
+            var me = this,
+                target = $(e.currentTarget),
+                dataKey = data || target.data('key');
+
+            ga('send', 'event', {
+                eventCategory: 'news',
+                eventAction: dataKey
+            });
+
+            me._clearNews();
+
+            me._news = Imigize.create('Imigize.app.cooperationNews.cooperationNewsWindow', {
+                autoShow: true
+            });
+            me._news.setNews(me.news, dataKey);
+        },
+
+        onNewsLinkClick: function() {
+            if (!this.frame2.offset()) {
+                return
+            }
+            $('html, body').animate({scrollTop: this.frame2.offset().top}, 500);
+        },
+
+        _clearNews: function() {
+            var me = this;
+            if (me._news) {
+                me._news.remove();
+                delete me._news;
+            }
+        }
+    };
+
+    Cooperation.init();
+});

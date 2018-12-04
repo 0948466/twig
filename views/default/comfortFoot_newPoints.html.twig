@@ -1,0 +1,24 @@
+{% extends '::layout/default.html.twig' %}
+
+{% block title %}{{ "Добавлены новые точки"| trans }}{% endblock %}
+
+{% block body %}
+    <div id="imigize-comfortFoot-show-new-points"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block javascriptsInline %}
+    {{ parent() }}
+
+    Imigize.create('Imigize.landing.part.ComfortFoot.ComfortForm__ShowNewPoints', {
+    addNewPoints: {{ addNewPoints | json_encode | raw }},
+    renderTo: $('#imigize-comfortFoot-show-new-points')
+    });
+
+{% endblock %}

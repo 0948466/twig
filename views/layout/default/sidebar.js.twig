@@ -1,0 +1,80 @@
+document.addEventListener("DOMContentLoaded", function() {
+    var Sidebar = {
+        init: function() {
+            var me = this;
+
+            me.ns = 'imigize-app-sidebar';
+
+            me.$linkForSub = $('.' + me.ns + '-right-menu');
+            me.$iconRightMenuOpen = $('.' + me.ns + '-icon-right-menu');
+            me.$iconRightMenuClose = $('.' + me.ns + '-sub-sidebar-close-icon');
+            me.$sidebarSub = $('.' + me.ns + '-sub-right');
+
+            me.$overlay = $('.overlay');
+
+            me.$linkForMyID = $('.' + me.ns + '-link-for-myID');
+            me.$profile = $('.imigize-app-header-profile');
+
+
+            me.binds();
+        },
+
+        binds: function() {
+            var me = this;
+
+            me.$linkForSub.on('click', me.onLinkOpenSubClick.bind(me));
+
+            me.$overlay.on('click', me.onOverlayClick.bind(me));
+
+            me.$linkForMyID.on('click', me.onLinkForMyIDClick.bind(me));
+        },
+
+        onLinkOpenSubClick: function(e) {
+            var me = this;
+            e.preventDefault();
+
+            me.$sidebarSub.toggle();
+            me.$iconRightMenuClose.toggle();
+            me.$iconRightMenuOpen.toggle();
+            if (me.$sidebarSub.is(':visible')) {
+                me.$overlay.show();
+            }
+            if (me.$sidebarSub.is(':hidden')) {
+                me.$overlay.hide();
+            }
+
+        },
+
+        onLinkForMyIDClick: function(e) {
+            var me =this, $window = Imigize.$window();
+            e.preventDefault();
+
+            me.onOverlayClick();
+
+            if ($window.width() > 1000) {
+                location.href = '{{ path('profile') }}';
+            } else {
+                if (me.$profile.is(':hidden')) {
+                    me.$profile.show();
+                    me.$overlay.hide();
+                }
+                if (me.$profile.is(':visible')) {
+                    me.$overlay.show();
+                }
+
+                $('html, body').animate({scrollTop: me.$profile.offset().top}, 500);
+            }
+        },
+
+        onOverlayClick: function() {
+            var me = this;
+
+            me.$sidebarSub.hide();
+            me.$iconRightMenuClose.hide();
+            me.$iconRightMenuOpen.show();
+        }
+
+    };
+
+    Sidebar.init();
+});

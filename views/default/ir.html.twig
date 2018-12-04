@@ -1,0 +1,224 @@
+{% extends '::layout/default.html.twig' %}
+
+{% block body %}
+    {% spaceless %}
+        {% set ns = 'imigize-cooperation' %}
+        {% if access %}
+            <div class="{{ ns }}-frame1 clearfix">
+
+                <div class="{{ ns }}-frame1-side-left">
+                    <h1 class="{{ ns }}-frame1-title">Статистика сервиса</h1>
+
+                    <div class="{{ ns }}-today-date">Сегодня 15 января 2017</div>
+                    <div class="{{ ns }}-after-date">День <span class="{{ ns }}-after-date-span">15</span> с начала
+                        продаж
+                    </div>
+                </div>
+
+                <div class="{{ ns }}-frame1-side-right">
+                    <div class="{{ ns }}-frame1-side-right-top {{ ns }}-display">
+                        <p class="{{ ns }}-week">
+                            28 неделя
+                        </p>
+                        <h4 class="{{ ns }}-title-members">
+                            Участников<br> сервиса:
+                        </h4>
+                        <p class="{{ ns }}-members">
+                            540
+                        </p>
+                        <span class="{{ ns }}-statics">
+                    <span class="{{ ns }}-statics-item1 {{ ns }}-statics-item"></span>
+                    <span class="{{ ns }}-statics-item2 {{ ns }}-statics-item"></span>
+                    <span class="{{ ns }}-statics-item3 {{ ns }}-statics-item"></span>
+                </span>
+                    </div>
+                    <div class="{{ ns }}-frame1-side-right-bottom {{ ns }}-display">
+                        <p class="{{ ns }}-week">
+                            28 неделя
+                        </p>
+                        <h4 class="{{ ns }}-title-members">
+                            Моделей оцифрованной обуви:
+                        </h4>
+                        <p class="{{ ns }}-members">
+                            245
+                        </p>
+                        <span class="{{ ns }}-statics">
+                    <span class="{{ ns }}-statics-item1 {{ ns }}-statics-item"></span>
+                    <span class="{{ ns }}-statics-item2 {{ ns }}-statics-item"></span>
+                    <span class="{{ ns }}-statics-item3 {{ ns }}-statics-item"></span>
+                </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="{{ ns }}-frame2">
+                <h2 class="{{ ns }}-frame2-title">
+                    Продажи и партнеры
+                </h2>
+                <div class="{{ ns }}-frame2-news">
+                    <div class="{{ ns }}-frame2-side-left">
+                        <div class="{{ ns }}-frame2-side-left-top {{ ns }}-display">
+                            <p class="{{ ns }}-week">
+                                28 неделя
+                            </p>
+                            <h4 class="{{ ns }}-title-members">
+                                Участников сервиса:
+                            </h4>
+                            <p class="{{ ns }}-members">
+                                540
+                            </p>
+                            <span class="{{ ns }}-statics">
+                          <span class="{{ ns }}-statics-item1 {{ ns }}-statics-item"></span>
+                          <span class="{{ ns }}-statics-item2 {{ ns }}-statics-item"></span>
+                          <span class="{{ ns }}-statics-item3 {{ ns }}-statics-item"></span>
+                        </span>
+                        </div>
+                        <div class="{{ ns }}-frame2-side-left-bottom {{ ns }}-display">
+                            <p class="{{ ns }}-week">
+                                28 неделя
+                            </p>
+                            <h4 class="{{ ns }}-title-members">
+                                Моделей оцифрованной обуви:
+                            </h4>
+                            <p class="{{ ns }}-members">
+                                245
+                            </p>
+                            <span class="{{ ns }}-statics">
+                          <span class="{{ ns }}-statics-item1 {{ ns }}-statics-item"></span>
+                          <span class="{{ ns }}-statics-item2 {{ ns }}-statics-item"></span>
+                          <span class="{{ ns }}-statics-item3 {{ ns }}-statics-item"></span>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="{{ ns }}-frame2-side-right">
+                        <h3 class="{{ ns }}-frame2-side-right-title">
+                            Новости сервиса
+                        </h3>
+                        <div class="{{ ns }}-frame2-side-right-news-items {{ ns }}-frame2-side-right-news-item1">
+                            <div class="{{ ns }}-frame2-side-right-news-item">
+                                <p class="{{ ns }}-frame2-side-right-news-item-date">
+                                    18 октября 2016
+                                </p>
+                                <p class="{{ ns }}-frame2-side-right-news-item-text">
+                                    Прошли переговоры с компанией Mascotte г. Москва
+                                </p>
+                            </div>
+
+                            <div class="{{ ns }}-frame2-side-right-news-item {{ ns }}-frame2-side-right-news-item2">
+                                <p class="{{ ns }}-frame2-side-right-news-item-date">
+                                    18 октября 2016
+                                </p>
+                                <p class="{{ ns }}-frame2-side-right-news-item-text">
+                                    Прошли переговоры с компанией "Дочки- Сыночки" г. Москва.
+                                </p>
+                            </div>
+
+                            <div class="{{ ns }}-frame2-side-right-news-item">
+                                <p class="{{ ns }}-frame2-side-right-news-item-date">
+                                    14 октября 2017
+                                </p>
+                                <p class="{{ ns }}-frame2-side-right-news-item-text">
+                                    в Охотском море «получен значительный приток газа и конденсата
+                                    Как отмечается в пресс-релизе,
+                                    в результате бурения поисково-оценочной скважины на Южно-Лунской структуре
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="{{ ns }}-frame2-news-modal">
+                        <div class="{{ ns }}-frame2-news-modal-close"></div>
+                        <p class="{{ ns }}-frame2-news-modal-date">
+                            18 октября 2016
+                        </p>
+                        <h3 class="{{ ns }}-frame2-news-modal-title">
+                            Прошли переговоры с компанией Mascotte г. Москва
+                        </h3>
+                        <p class="{{ ns }}-frame2-news-modal-text">
+                            Со стороны Mascotte выступил директор интернет-магазина Скуридин Александр Борисович.
+                            <br><br>
+                            По результатам переговоров пришли к соглашению о подписания договора на подключение к сервису тестового количества -100 моделей обуви с последующим расширением ассортимента.
+                            <br><br>
+                            Потенциал  компании Mascotte - 2000 моделей.
+                            <br><br>
+                            Mascotte- Российская торговая марка женской и мужской обуви на рынке с 2003 г.
+                            <br><br>
+                            <a href="www.mascotte.ru">www.mascotte.ru</a>
+                            <br><br>
+                            Количество торговых точек в РФ- 83
+                            <br>
+                            Оборот компании- около  5 млрд.  руб. 2015 год
+                            <br>
+                            Средняя цена пары- 3500 руб
+                        </p>
+                        <div class="{{ ns }}-frame2-news-modal-img {{ ns }}-frame2-news-modal-img1">
+                        </div>
+                        <div class="{{ ns }}-frame2-news-modal-img {{ ns }}-frame2-news-modal-img2">
+                        </div>
+                        <div class="{{ ns }}-frame2-news-modal-img {{ ns }}-frame2-news-modal-img3">
+                        </div>
+                    </div>
+
+                    <div class="{{ ns }}-frame2-news-modal2">
+                        <div class="{{ ns }}-frame2-news-modal-close"></div>
+                        <p class="{{ ns }}-frame2-news-modal-date">
+                            18 октября 2016
+                        </p>
+                        <h3 class="{{ ns }}-frame2-news-modal-title">
+                            Прошли переговоры с компанией "Дочки- Сыночки" г. Москва.
+                        </h3>
+                        <p class="{{ ns }}-frame2-news-modal-text">
+                            Со стороны компании "Д-С" выступили Зольников Дмитрий Станиславович  руководитель отдела маркетинга и Барановская Наталья Евгеньевна категорийный менеджер.
+                            <br><br>
+                            По результатам переговоров определили ассортимент подростковой обуви доступный к подключению к сервису бесконтактной примерки- от 30 до 36го размера.
+                            <br><br>
+                            Партнер по переговорам проявил заинтересованность и высоко оценил возможное сотрудничество в рамках ограниченного размерного ассортимента. Ожидаемое к подключению количество моделей - 1200 шт.
+                            <br><br>
+                            Потенциал  компании  "Дочки- Сыночки"- 1200 моделей обуви (всего 6000 моделей)
+                            <br><br>
+                            "Дочки- Сыночки" -  вендор детской и подростковой обуви на рынке с 1996 г. торговые марки- Twins, Reima, Zebra, Elegami, Indigo Kids итд.
+                            <br><br>
+                            Выручка компании «Дочки-Сыночки» в 2013 году-  15,6 млрд рублей
+                            (30-е место в списке самых быстрорастущих компаний от РБК
+                            <br><br>
+                            <a href="http://www.dochkisinochki.ru/shops/about/">http://www.dochkisinochki.ru/shops/about/</a>
+                            <br><br>
+                            Количество торговых точек в РФ- 145
+                            <br>
+                            Средняя цена пары обуви- 1500-2000 руб
+                        </p>
+                        <div class="{{ ns }}-frame2-news-modal-img {{ ns }}-frame2-news-modal-img4">
+                        </div>
+                        <div class="{{ ns }}-frame2-news-modal-img {{ ns }}-frame2-news-modal-img5">
+                        </div>
+                        <div class="{{ ns }}-frame2-news-modal-img {{ ns }}-frame2-news-modal-img6">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        {% else %}
+            <form method="post" class="{{ ns }}-needLogin">
+                <h1>Инвесторам</h1>
+                <p class="{{ ns }}-text-about">Здравствуйте.<br> Для просмотра этой страницы необходимо ввести пароль.<br>
+                    Чтобы его получить, заполните <a class="{{ ns }}-link-for-form" href="https://docs.google.com/forms/d/e/1FAIpQLSdRdZzY8ixVmgE2wDx_DPV08eqDD0VxxYOgr3bek54PXFoYbw/viewform" target="_blank" rel="noopener">форму.</a>
+                </p>
+                <div>
+                    <p class="{{ ns }}-text-password"><label for="{{ ns }}-key">Введите пароль:</label></p>
+                    <input class="{{ ns }}-input-password"  type="password" name="key" id="{{ ns }}-key">
+                    <input class="{{ ns }}-btn" value="Продолжить" type="submit">
+                </div>
+                {% if error is defined and error is not empty %}
+                    <div class="{{ ns }}-needLogin-error">{{ error }}</div>
+                {% endif %}
+                <div class="{{ ns }}-form">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdRdZzY8ixVmgE2wDx_DPV08eqDD0VxxYOgr3bek54PXFoYbw/formResponse"></iframe>
+                </div>
+            </form>
+        {% endif %}
+        <script>
+            {% include ':default:cooperation.js.twig' %}
+        </script>
+    {% endspaceless %}
+
+{% endblock %}

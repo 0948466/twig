@@ -1,0 +1,141 @@
+$ns: '.imigize-cooperationNews';
+
+#{$ns} {
+    padding: 60px;
+    box-sizing: border-box;
+    @include border-radius(4px);
+    background-color: #fff;
+    box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.18);
+}
+
+#{$ns}-paginator {
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 14px;
+    width: 86px;
+    height: 24px;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.4px;
+    color: #4d4d4d;
+    line-height: 22px;
+    text-align: center;
+}
+
+#{$ns}-arrow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#{$ns}-arrow-right {
+    left: 100%;
+    margin-left: -24px;
+    transform: rotate(180deg);
+}
+
+#{$ns}-arrow::before,
+#{$ns}-arrow::after {
+    content: "";
+    left: 5px;
+    position: absolute;
+    width: 9px;
+    height: 1px;
+    background-color: #9f9f9f;
+}
+
+#{$ns}-arrow::before {
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    top: 8px;
+}
+
+#{$ns}-arrow::after {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    top: 14px;
+}
+
+#{$ns}-date {
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 20px;
+    letter-spacing: 2.6px;
+    text-align: left;
+    color: #4d4d4d;
+}
+
+#{$ns}-title {
+    margin-bottom: 25px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    color: #4d4d4d;
+}
+
+#{$ns}-text {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 24px;
+    color: #4d4d4d;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#{$ns}-img {
+    display: none;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    max-width: 640px;
+    max-height: 425px;
+    width: 100%;
+    @include user-select(none);
+    cursor: pointer;
+}
+
+#{$ns}-img:first-child {
+    display: inline;
+}
+
+#{$ns}-news-link-pdf {
+    text-decoration: underline;
+}
+
+@media only screen and (min-device-width: 741px) {
+    #{$ns}-title {
+        font-size: 36px;
+        line-height: 46px;
+    }
+}
+
+@media only screen and (max-device-width: 740px) {
+    #{$ns} {
+        padding: 4% 6%;
+    }
+
+    #{$ns}-title {
+        font-size: 24px;
+        line-height: 32px;
+        word-wrap: break-word;
+    }
+}
+
+.hidden {
+    display: none;
+}

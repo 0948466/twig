@@ -1,0 +1,32 @@
+{% extends ':layout/default:header.html.twig' %}
+
+{% block personalBlock %}
+
+    <div class="{{ ns }}-personal-block">
+
+            <div class="{{ ns }}-personal-block-user-icon">
+            </div>
+            <div class="{{ ns }}-personal-block-user-name">
+                {{ name }}
+            </div>
+            <div class="{{ ns }}-personal-block-logout">
+                <a class="{{ ns }}-personal-block-logout-link" href="{{ path('cooperation_exit_action') }}">{{ "Выйти"| trans }}</a>
+            </div>
+
+    </div>
+
+{% endblock %}
+
+{% block NavMenuLink %}
+    {% if menuCorp is defined %}
+        <nav class="{{ ns }}-cooperation-navigation">
+            <ul class="{{ ns }}-cooperation-menu">
+                {% for menuItem in menuCorp %}
+                    <li>
+                        <a class="{{ ns }}-cooperation-menu-link {{ ns }}-{{ menuItem.path }}">{{ menuItem.title| trans }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    {% endif %}
+{% endblock %}

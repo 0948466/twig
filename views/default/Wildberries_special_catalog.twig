@@ -1,0 +1,37 @@
+{% extends '::layout/default.html.twig' %}
+
+{% block favicon %}
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon-wildberries.png') }}">
+{% endblock %}
+
+{% block title %}{{ "Каталог измеренной обуви в интернет магазине WildBerries.ru"| trans }}{% endblock %}
+
+{% block body %}
+    {% include 'CatalogBundle:Default:index/filter.html.twig' with {index: true} only %}
+{% endblock %}
+
+
+{% block header %}
+    <div id="imigize-header-wildberries"></div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        Imigize.create('Imigize.catalog.view.wildberries.header.Header__Wildberries', {
+            renderTo: $('#imigize-header-wildberries')
+        });
+    </script>
+
+    <script>
+        {% include '@Catalog/Default/index/products.js.twig' with {
+            linesCount: 2,
+            noHistory: true,
+            category: 'wildberries',
+            warehouse: 'wildberries'
+        } only %}
+    </script>
+{% endblock %}

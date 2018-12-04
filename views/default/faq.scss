@@ -1,0 +1,71 @@
+$ns: '.imigize-faq';
+
+@import "blocks/_icon-back";
+@import "blocks/_breadcrumbs";
+@import "blocks/_btn-next";
+@import "blocks/_slider";
+@import "blocks/_hints";
+@import "blocks/_page-counter";
+
+#{$ns} {
+    background-color: #fff;
+    @include font-OpenSans('regular');
+}
+
+#{$ns}-inner {
+    margin: 0 auto;
+    position: relative;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#{$ns}-title {
+    padding-top: 46px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #2f2f2f;
+    text-align: center;
+}
+
+@media only screen and (min-device-width: 1191px) {
+    #{$ns}-inner {
+        min-width: 1191px;
+        max-width: 1200px;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-device-width: 768px) {
+    #{$ns}-title br {
+        display: none;
+    }
+}
+
+@media only screen and (max-device-width: 767px) {
+    #{$ns}-inner {
+        min-width: 320px;
+        max-width: 767px;
+    }
+}
+
+@media only screen and (max-device-width: 1019px) {
+    #{$ns}-title {
+        font-size: 28px;
+    }
+}
+
+@media only screen and (min-device-width: 1020px) {
+    #{$ns}-title {
+        font-size: 36px;
+    }
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}

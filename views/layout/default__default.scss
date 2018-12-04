@@ -1,0 +1,35 @@
+$defaultPage: $ns + '__default';
+
+#{$defaultPage} {
+    @include font-OpenSans('light');
+    font-size: 19px;
+    line-height: 28px;
+    color: #444;
+
+    b {
+        font-weight: bold;
+    }
+    @media only screen and (min-device-width: 1191px) {
+        #{$ns}-inner {
+            min-width: 1191px;
+            max-width: 1690px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+
+    @media only screen and (max-device-width : 767px) {
+        #{$ns}-inner {
+            min-width: 320px;
+            max-width: 767px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}

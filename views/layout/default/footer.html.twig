@@ -1,0 +1,42 @@
+{% set ns = 'imigize-app-footer' %}
+{% set locale =  app.request.locale %}
+{% spaceless %}
+<div class="{{ ns }}">
+    <div class="{{ ns }}-left">
+        <div class="{{ ns }}-logo">
+            <a href="/">IMIGIZE</a>
+        </div>
+        <div class="{{ ns }}-copyright">
+            Copyright © Imigize Group. All rights reserved
+        </div>
+    </div>
+    <div class="{{ ns }}-right">
+        <div class="{{ ns }}-imigize-io">
+            <h3 class="{{ ns }}-imigize-io-title">Imigize ICO</h3>
+            <a class="{{ ns }}-imigize-io-link" target="_blank" rel="noopener" href="{{"url-imigize-io" | trans}}">imigize.io</a>
+        </div>
+        <div class="{{ ns }}-menu">
+            <h3 class="{{ ns }}-menu-title">{{"Компания" | trans}}</h3>
+            <a class="{{ ns }}-menu-link" href="{{ path('homepage') }}">{{"Главная" | trans}}</a>
+            <a class="{{ ns }}-menu-link" href="/blog/{{"lang-blog" | trans }}">{{"Блог" | trans}}</a>
+            <a class="{{ ns }}-menu-link" href="{{ path('technology_action') }}">{{"О проекте" | trans}}</a>
+            <a class="{{ ns }}-menu-link" href="{{ path('catalog_controller') }}">{{"Каталог" | trans}}</a>
+            <a class="{{ ns }}-menu-link" href="{{ path('contacts_action') }}">{{"Контакты" | trans}}</a>
+            <a class="{{ ns }}-menu-link" href="{{ path('cooperation') }}">{{"Инвесторам" | trans}}</a>
+            {% if locale == 'ru' %}
+                <a class="{{ ns }}-menu-link" href="{{ path('faq2_action') }}">FAQ</a>
+            {% endif %}
+
+        </div>
+
+        <div class="{{ ns }}-social">
+            <h3 class="{{ ns }}-social-title">{{"Сообщества" | trans}}</h3>
+            <a class="{{ ns }}-social-link__vk" target="_blank" rel="noopener" href="{{"url-social-vk" | trans}}">{{"Вконтакте" | trans}}</a>
+            <a class="{{ ns }}-social-link__ytube" target="_blank" rel="noopener" href="https://www.youtube.com/channel/UCvksyWOvypSWFjy9cFoS-FQ">{{"Youtube" }}</a>
+            <a class="{{ ns }}-social-link__fb" target="_blank" rel="noopener" href="https://www.facebook.com/Imigize/">{{"Facebook" }}</a>
+            <a class="{{ ns }}-social-link__tel" target="_blank" rel="noopener" href="https://t.me/imigize">{{"Telegram"}}</a>
+            <a class="{{ ns }}-social-link__tw" target="_blank" rel="noopener" href="https://twitter.com/imigize">{{"Twitter" }}</a>
+        </div>
+    </div>
+</div>
+{% endspaceless %}

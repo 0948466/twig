@@ -1,0 +1,31 @@
+{% spaceless %}
+    {% set ns = 'imigize-app-sidebar' %}
+    <div class="{{ ns }}">
+        <div class="{{ ns }}-right">
+
+            <a class="{{ ns }}-right-menu" href="#">
+                <div class="{{ ns }}-icon-right-menu"></div>
+                <div class="{{ ns }}-sub-sidebar-close-icon"></div>
+            </a>
+
+
+            <div class="{{ ns }}-sub-right">
+                <ul class="{{ ns }}-sub-right-menu">
+                    <li><a href="{{ path('homepage') }}">{{ "Главная"| trans }}</a></li>
+                    <li><a href="{{ path('technology_action') }}">{{ "О проекте"| trans }}</a></li>
+                    <li><a href="{{ path('catalog_controller') }}">{{ "Каталог"| trans }}</a></li>
+                    <li><a class="{{ ns }}-link-for-myID">{{ "Мой ID"| trans }}</a></li>
+                    <li><a href="{{ path('stylists') }}">{{ "Стилисты"| trans }}</a></li>
+                    <li><a href="{{ path('style-images') }}">{{ "Образы"| trans }}</a></li>
+                    <li><a href="{{ path('contacts_action') }}">{{ "Контакты"| trans }}</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endspaceless %}
+
+<script>
+    {% include ':layout/default:sidebar.js.twig' %}
+</script>

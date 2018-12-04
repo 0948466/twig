@@ -1,0 +1,225 @@
+#{$ns}-slider-item {
+    border-top: 1px solid #d8d8d8;
+}
+
+#{$ns}-slider-title {
+    font-size: 16px;
+    line-height: 23px;
+    font-weight: bold;
+    color: #2f2f2f;
+}
+
+#{$ns}-slider-span {
+    font-size: 50px;
+    line-height: 42px;
+    font-weight: 300;
+    color: #2f2f2f;
+}
+
+@media only screen and (min-device-width: 1191px) {
+    #{$ns}-slider-title {
+        line-height: 48px;
+    }
+}
+
+@media only screen and (min-device-width: 768px) {
+    #{$ns}-slider-title {
+        line-height: 46px;
+    }
+}
+
+@media only screen and (max-device-width: 1019px) {
+    #{$ns}-slider-title-text,
+    #{$ns}-swiper-slide_big {
+        display: none;
+    }
+
+    #{$ns}-slider-item {
+        padding: 38px 0 6px 0;
+    }
+
+    #{$ns}-slider-span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 60px;
+        text-align: center;
+    }
+
+    #{$ns}-slider-title {
+        position: relative;
+        padding-left: 60px;
+        margin-bottom: 20px;
+        min-height: 48px;
+    }
+
+    #{$ns}-slider-img {
+        margin-bottom: 20px;
+        width: 100%;
+        height: 290px;
+    }
+
+    #{$ns}-slider-text {
+        font-size: 13px;
+        font-weight: normal;
+        color: #2f2f2f;
+        text-align: left;
+    }
+
+    #{$ns} {
+        .swiper-container {
+            width: 100%;
+            margin: 20px auto;
+            padding-bottom: 30px;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            width: 85% !important;
+            max-width: 300px;
+            min-height: 290px;
+            cursor: pointer;
+        }
+    }
+
+
+    #{$ns}-hints-btn_big {
+        display: none;
+    }
+}
+
+@media only screen and (max-device-width: 340px) {
+    #{$ns}-slider-img {
+        height: 250px;
+    }
+
+    #{$ns} {
+        .swiper-slide {
+            height: 250px;
+        }
+        .swiper-container {
+            width: 100%;
+            min-height: 370px;
+        }
+    }
+}
+
+@media only screen and (min-device-width: 1020px) {
+    #{$ns} {
+        .swiper-wrapper {
+            position: relative;
+            display: block;
+            width: 658px;
+            min-height: 520px;
+        }
+
+        .swiper-container {
+            width: 70%;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .swiper-slide {
+            float: left;
+            width: auto;
+        }
+    }
+
+    #{$ns}-slider-item {
+        padding: 38px 2% 38px 2%;
+    }
+
+    #{$ns}-slider-title-wrapper {
+        width: 200px;
+    }
+
+    #{$ns}-slider-title-wrapper {
+        padding: 0 39px;
+        display: inline-block;
+        vertical-align: top;
+        width: 30%;
+        box-sizing: border-box;
+    }
+
+    #{$ns}-slider-span {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    #{$ns}-slider-title {
+        margin-bottom: 14px;
+        line-height: 1.5;
+    }
+
+
+    #{$ns}-swiper-slide_big {
+        float: left;
+        margin-right: 10px;
+        width: 510px;
+    }
+
+
+    #{$ns}-slider-title-text {
+        font-size: 13px;
+        line-height: 1.54;
+        font-weight: normal;
+        letter-spacing: normal;
+        color: #2f2f2f;
+    }
+
+    #{$ns}-slider-img_big {
+        margin-bottom: 15px;
+        width: 510px;
+        height: 430px;
+        box-sizing: border-box;
+    }
+
+    #{$ns}-slider-img_big_wrong {
+        border: 5px solid #f51e1f;
+    }
+
+    #{$ns}-slider-img {
+        position: relative;
+        width: 138px;
+        height: 106px;
+        box-sizing: border-box;
+        opacity: 0.5;
+        cursor: pointer;
+        border: solid 4px transparent;
+        &:hover {
+            opacity: 1;
+            border: solid 4px #32d0e7;
+        }
+    }
+
+    #{$ns}-slider-img_active {
+        opacity: 1;
+        border: solid 4px #32d0e7;
+    }
+
+    #{$ns}-slider-text_big {
+        padding-right: 50px;
+        font-size: 15px;
+        font-weight: normal;
+        line-height: 1.33;
+        color: #2f2f2f;
+    }
+
+    #{$ns}-slider-text_small {
+        display: none;
+    }
+
+    #{$ns}-hints-btn_big {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding-right: 23px;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.43;
+        color: #2f2f2f;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,46 @@
+{% set ns = 'imigize-faq' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>{% block title %}Faq о правильном измерении ног{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+    {% if app.environment == 'dev' %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/modules/bundle/app/css/style-full.css') }}">
+    {% else %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/modules/bundle/app/css/style-full.min.css') }}">
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui/swiper.min.css') }}">
+</head>
+<body class="{{ ns }} {{ ns }}__{{ modificator }}">
+<div class="{{ ns }}-inner">
+    <div class="{{ ns }}-content">
+        {% block body %}
+            {% include':default/blocks:_icon-back.html.twig' %}
+            <h1 class="{{ ns }}-title">Как сделать<br> измерение</h1>
+            {% include ':default/blocks:_breadcrumbs.html.twig' %}
+            {% include ':default/blocks:_slider1.html.twig' %}
+            {% include ':default/blocks:_page-counter.html.twig' %}
+            {% include ':default/blocks:_btn-next.html.twig' %}
+        {% endblock %}
+    </div>
+</div>
+
+{% block javascripts %}
+    {% if app.environment == 'dev' %}
+        <script src="{{ asset('assets/modules/bundle/app/js/script-full.js') }}"></script>
+    {% else %}
+        <script src="{{ asset('assets/modules/bundle/app/js/script-full.min.js') }}"></script>
+    {% endif %}
+{% endblock %}
+
+<script>
+    {% include ':default:faq.js.twig' %}
+</script>
+
+<script src="{{ asset('jquery-ui/swiper.jquery.min.js') }}"></script>
+
+</body>
+</html>

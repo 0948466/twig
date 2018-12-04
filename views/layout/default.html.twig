@@ -1,0 +1,67 @@
+{% set ns = 'imigize-app-body' %}
+{% set modificator = app.request.get('_route') == 'homepage' ? 'landing' : 'default' %}
+{% set locale =  app.request.locale %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>{% block title %}{{ "Бесконтактная примерка обуви в интернете" | trans }}{% endblock %}</title>
+    <meta name="description" content="{{ "Imigize - первый в мире сервис бесконтактной 3D примерки и покупки обуви в онлайн магазинах."  | trans }}"/>
+    <meta name="keywords" content="{{ "meta-keywords"  | trans }}"/>
+    {% block favicon %}
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+    {% endblock %}
+    {% if app.environment == 'dev' %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/modules/bundle/app/css/style-full.css') }}?v=%JAVASCRIPT-CSS-VERSION%">
+    {% else %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/modules/bundle/app/css/style-full.min.css') }}??v=%JAVASCRIPT-CSS-VERSION%">
+    {% endif %}
+    {% block stylesheets %}{% endblock %}
+    <style type="text/css">
+        {% block styles %}{% endblock %}
+    </style>
+</head>
+<body class="{{ ns }} {{ ns }}__{{ modificator }}">
+<div class="{{ ns }}-inner">
+
+    {% block header %}
+        {% set menu = [
+        {'path': path('technology_action'), 'title': 'О проекте'},
+        {'path': path('catalog_controller'), 'title': 'Каталог'},
+        {'path': '/blog', 'addPath': 'lang-blog', 'title': 'Блог'},
+        {'path': path('cooperation'), 'title': 'Инвесторам'},
+        {'path': path('contacts_action'), 'title': 'Контакты'}
+        ] %}
+        {% include ':layout/default:header.html.twig' %}
+    {% endblock %}
+    <div class="{{ ns }}-content">
+        {% block body %}{% endblock %}
+    </div>
+    {% block footer %}
+        {% include ':layout/default:footer.html.twig' %}
+    {% endblock %}
+</div>
+<div class="overlay"></div>
+{% block javascripts %}
+    {% if app.environment == 'dev' %}
+        <script src="{{ asset('assets/modules/bundle/app/js/script-full.js') }}?v=%JAVASCRIPT-CSS-VERSION%"></script>
+    {% else %}
+        <script src="{{ asset('assets/modules/bundle/app/js/script-full.min.js') }}?v=%JAVASCRIPT-CSS-VERSION%"></script>
+    {% endif %}
+{% endblock %}
+<script type="text/javascript">
+    {% block javascriptsInline %}
+
+    {% if locale is defined and locale == 'en' %}
+    {% include ':default/translate:translateEn.js.twig' %}
+    {% else %}
+    {% include ':default/translate:translateRu.js.twig' %}
+    {% endif %}
+    {% endblock %}
+</script>
+{% block javascriptsBase %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,19 @@
+document.addEventListener("DOMContentLoaded", function() {
+    var Cooperation = {
+        init: function(ns) {
+            var me = this;
+
+            me.ns = 'imigize-app-contactsPage';
+
+
+            {% if successSend is not empty %}
+            me.sendMessege = $('.' + me.ns + '-send-messege');
+            me.sendMessege.fadeIn(800).delay(2500).fadeOut(800);
+            {% endif %}
+
+
+        }
+    };
+
+    Cooperation.init();
+});

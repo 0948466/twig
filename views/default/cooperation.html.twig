@@ -1,0 +1,252 @@
+{% extends '::layout/default.html.twig' %}
+
+{% block body %}
+    {% spaceless %}
+        {% set ns = 'imigize-cooperation' %}
+        {% if access %}
+            <div class="{{ ns }}-frame1-all clearfix">
+                <div class="{{ ns }}-frame1-btns">
+                    <div class="{{ ns }}-frame1-btn-left {{ ns }}-frame1-btn {{ ns }}-frame1-btn-active">
+                        {{ "Статистика сервиса"| trans }}
+                    </div>
+                    <div class="{{ ns }}-frame1-btn-right {{ ns }}-frame1-btn">{{ "Статистика продаж"| trans }}</div>
+                </div>
+                <div class="{{ ns }}-frame1 {{ ns }}-frame1a  clearfix">
+
+                    <div class="{{ ns }}-frame1-side-left">
+                        <h1 class="{{ ns }}-frame1-title">{{ "Статистика сервиса"| trans }}</h1>
+
+                        <div class="{{ ns }}-today-date"></div>
+                        <div class="{{ ns }}-after-date">{{ "День"| trans }} <span
+                                    class="{{ ns }}-after-date-span"></span> {{ "с начала продаж"| trans }}
+                        </div>
+                    </div>
+
+                    <div class="{{ ns }}-frame1-side-right">
+                        <div class="{{ ns }}-frame1-side-right-top {{ ns }}-display">
+                            <p class="{{ ns }}-week">
+                            </p>
+                            <h4 class="{{ ns }}-title-members">
+                                {{ "Кол-во пользователей"| trans }}
+                                {{ "сервиса"| trans }}:
+                            </h4>
+                            <p class="{{ ns }}-members">
+                                {{ countMembers }}
+                            </p>
+                            <span class="{{ ns }}-statics">
+                    <span class="{{ ns }}-statics-item1 {{ ns }}-statics-item"></span>
+                    <span class="{{ ns }}-statics-item2 {{ ns }}-statics-item"></span>
+                    <span class="{{ ns }}-statics-item3 {{ ns }}-statics-item"></span>
+                </span>
+                        </div>
+                        <div class="{{ ns }}-frame1-side-right-bottom {{ ns }}-display">
+                            <p class="{{ ns }}-week">
+                            </p>
+                            <h4 class="{{ ns }}-title-members">
+                                {{ "Кол-во оцифрованных"| trans }}
+                                {{ "пар обуви"| trans }}:
+                            </h4>
+                            <p class="{{ ns }}-members">
+                                {{ countShoes }}
+                            </p>
+                            <span class="{{ ns }}-statics">
+                    <span class="{{ ns }}-statics-item1 {{ ns }}-statics-item"></span>
+                    <span class="{{ ns }}-statics-item2 {{ ns }}-statics-item"></span>
+                    <span class="{{ ns }}-statics-item3 {{ ns }}-statics-item"></span>
+                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="{{ ns }}-frame1 {{ ns }}-frame1b  clearfix">
+
+                    <div class="{{ ns }}-frame1-side-left">
+                        <h1 class="{{ ns }}-frame1-title">{{ "Продажи и партнеры"| trans }}</h1>
+
+                        <p>{{ "Клиенты: интернет-магазины."| trans }}<br>
+                            {{ "Продажи: проданных пар обуви с помощью сервиса \"Бесконтактная примерка обуви\""| trans }}
+                        </p>
+                    </div>
+
+                    <div class="{{ ns }}-frame1-side-right">
+                        <div class="{{ ns }}-frame1-side-right-top {{ ns }}-display">
+                            <p class="{{ ns }}-week">
+                            </p>
+                            <h4 class="{{ ns }}-title-members">
+                                {{ "Кол-во подключенных магазинов"| trans }}:
+                            </h4>
+                            <p class="{{ ns }}-members">
+                                2
+                            </p>
+                            <span class="{{ ns }}-statics">
+                    <span class="{{ ns }}-statics-item1 {{ ns }}-statics-item"></span>
+                    <span class="{{ ns }}-statics-item2 {{ ns }}-statics-item"></span>
+                    <span class="{{ ns }}-statics-item3 {{ ns }}-statics-item"></span>
+                </span>
+                        </div>
+                        <div class="{{ ns }}-frame1-side-right-bottom {{ ns }}-display">
+                            <p class="{{ ns }}-week">
+                            </p>
+                            <h4 class="{{ ns }}-title-members">
+                                {{ "Кол-во продаж"| trans }}:
+                            </h4>
+                            <p class="{{ ns }}-members">
+                                1
+                            </p>
+                            <span class="{{ ns }}-statics">
+                    <span class="{{ ns }}-statics-item1 {{ ns }}-statics-item"></span>
+                    <span class="{{ ns }}-statics-item2 {{ ns }}-statics-item"></span>
+                    <span class="{{ ns }}-statics-item3 {{ ns }}-statics-item"></span>
+                </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="{{ ns }}-frame2">
+                <h2 class="{{ ns }}-frame2-title">
+                    {{ "Новости сервиса"| trans }}
+                </h2>
+
+                <div class="{{ ns }}-frame2-news-all">
+                    <div class="{{ ns }}-frame2-news-all-arrow {{ ns }}-frame2-news-all-arrow-left"></div>
+                    <div class="{{ ns }}-frame2-news-all-arrow {{ ns }}-frame2-news-all-arrow-right"></div>
+
+                    {% if news is defined %}
+                        {% for key,newsItem in news %}
+                            <div class="{{ ns }}-frame2-news-item" data-key="{{ key }}">
+                                {% if newsItem.video is not empty %}
+                                    <div class="{{ ns }}-frame2-news-item-img">
+                                        <iframe
+                                            src="{{ newsItem.video }}"
+                                            frameborder="0"
+                                            width="100%"
+                                            height="100%"
+                                            allowfullscreen="1"
+                                        ></iframe>
+                                    </div>
+                                {% else %}
+                                    {% if newsItem.images is defined %}
+                                        <img class="{{ ns }}-frame2-news-item-img"
+                                             src="/images/news/{{ newsItem.images[newsItem.mainImage | default(0)] }}"
+                                             data-key="{{ key }}"
+                                             alt="{{ "Фотографии с мероприятий"| trans }}">
+                                    {% endif %}
+                                {% endif %}
+                                    {% if newsItem.date is defined %}
+                                        <p class="{{ ns }}-frame2-news-item-date">{{ newsItem.date }}</p>
+                                    {% endif %}
+
+                                    {% if newsItem.preText is defined %}
+                                        <p class="{{ ns }}-frame2-news-item-text">
+                                            {{ newsItem.preText | raw | nl2br }}
+                                        </p>
+                                    {% endif %}
+                                <a class="{{ ns }}-frame2-news-item-link"
+                                   data-key="{{ key }}">{{ "Подробнее"| trans }}</a>
+                            </div>
+
+                        {% endfor %}
+                    {% endif %}
+
+                </div>
+
+                {% if news is defined and news|length > 1 %}
+                    <div class="{{ ns }}-frame2-news-paginator">
+                        <a class="{{ ns }}-frame2-news-paginator-btn-page">1</a>
+                    </div>
+                {% endif %}
+
+            </div>
+        {% else %}
+            <div class="{{ ns }}-needLogin-all">
+                <form method="post" class="{{ ns }}-needLogin">
+                    <div class="{{ ns }}-needLogin-enter">
+                        <h1>{{ "Инвесторам"| trans }}</h1>
+                        <p class="{{ ns }}-text-about">{{ "Для просмотра этой страницы необходимо ввести пароль."| trans }}
+                            <br>
+                            {{ "Чтобы его получить, заполните"| trans }} <a class="{{ ns }}-link-for-form"
+                                                                            target="_blank" rel="noopener">{{ "форму"| trans }}.</a>
+                        </p>
+                        <div class="{{ ns }}-needLogin-entrance">
+                            <p class="{{ ns }}-needLogin-entrance-title"><label for="{{ ns }}-key">
+                                    {{ "Вход для партнёров"| trans }}</label>
+                            </p>
+                            <input class="{{ ns }}-input-password" type="password" name="key" id="{{ ns }}-key"
+                                   placeholder="{{ "Пароль"| trans }}">
+                            <input class="{{ ns }}-btn" value="{{ "Войти"| trans }}" type="submit">
+                            {% if error is defined and error is not empty %}
+                                <div class="{{ ns }}-needLogin-error">{{ error | trans }}</div>
+                            {% endif %}
+                        </div>
+
+                        <a class="{{ ns }}-link-for-form {{ ns }}-link-for-form-bottom"
+                           target="_blank" rel="noopener">{{ "Получить пароль"| trans }}</a>
+                    </div>
+                </form>
+
+                <form method="post" class="{{ ns }}-needLogin-form" action="{{ path('cooperation_request_action') }}">
+                    <h2 class="{{ ns }}-needLogin-form-title">
+                        {{ "Заинтересовались инвестициями в инновационный"| trans }} <br>
+                        {{ "и высокодоходный бизнес Imigize?"| trans }}
+                    </h2>
+                    <p class="{{ ns }}-needLogin-form-text">
+                        {{ "Оставьте Ваши контакты в форме ниже или просто напишите нам на"| trans }}
+                        <a href="mailto:sales@imigize.com">sales@imigize.com</a><br>
+                        {{ "Наши специалисты свяжутся с Вами для обсуждения вариантов сотрудничества"| trans }}
+                        <a class="{{ ns }}-link-for-entrance-arrow"></a>
+                    </p>
+                    <div class="{{ ns }}-needLogin-form-item">
+                        <h4 class="{{ ns }}-needLogin-form-item-title">{{ "Обратная связь"| trans }}
+                            | {{ "запрос пароля"| trans }}</h4>
+
+                        <label>
+                            <p class="{{ ns }}-needLogin-form-item-left">*{{ "Имя"| trans }}</p>
+                            <input class="{{ ns }}-needLogin-form-item-input" type="text" name="name" id="{{ ns }}-name"
+                                   required>
+                        </label>
+                        <label>
+                            <p class="{{ ns }}-needLogin-form-item-left"> {{ "Компания"| trans }}</p>
+                            <input class="{{ ns }}-needLogin-form-item-input" type="text" name="company"
+                                   id="{{ ns }}-company">
+                        </label>
+                        <label>
+                            <p class="{{ ns }}-needLogin-form-item-left">*Email</p>
+                            <input class="{{ ns }}-needLogin-form-item-input" type="email" name="email"
+                                   id="{{ ns }}-email" required>
+                        </label>
+                        <label>
+                            <p class="{{ ns }}-needLogin-form-item-left"> {{ "Телефон"| trans }}</p>
+                            <input class="{{ ns }}-needLogin-form-item-input {{ ns }}-needLogin-form-item-input-phone"
+                                   type="text" name="phone" id="{{ ns }}-phone">
+                        </label>
+                        <input class="{{ ns }}-needLogin-form-btn" value="{{ "Отправить"| trans }}" type="submit">
+                    </div>
+                </form>
+                <div class="{{ ns }}-needLogin-congratulations">
+                    <a class="{{ ns }}-link-for-entrance-arrow"></a>
+                    <h4 class="{{ ns }}-needLogin-congratulations-title">{{ "Спасибо за проявленный интерес."| trans }}
+                        <br>
+                        {{ "Наши специалисты вскоре"| trans }}<br>
+                        {{ "свяжутся с вами."| trans }}</h4>
+                </div>
+            </div>
+        {% endif %}
+        <script>
+            {% include ':default:googleAnalytics.js.twig' %}
+            {% include ':default:cooperation.js.twig' %}
+        </script>
+    {% endspaceless %}
+
+{% endblock %}
+
+{% block header %}
+    {% if access %}
+        {% set menuCorp = [
+        {'path': 'statistic', 'title': 'Статистика'},
+        {'path': 'news', 'title': 'Новости проекта'}
+        ] %}
+        {% include ':default:cooperation.header.html.twig' %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

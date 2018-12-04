@@ -1,0 +1,38 @@
+{% extends '::layout/default.html.twig' %}
+
+{% block title %}{{ "Форма обратной связи"| trans }}{% endblock %}
+
+{% block body %}
+    <div id="imigize-comfortFoot"></div>
+{% endblock %}
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block styles %}
+    .imigize-wildberries-comfort-foot-selected-shoes-img {
+        background-size: contain  !important;
+        background-position-y: center !important;
+        background-position-x: center !important;
+    }
+{% endblock %}
+
+{% block javascriptsInline %}
+    {{ parent() }}
+    var article = '{{ product.vendorCode }}', size = '{{ size }}';
+    Imigize.landing.part.ComfortFoot.ComfortModel.initDataModel({
+        article: article,
+        size: size,
+        src: '//img1.imigize.ru/{{ product.productId }}/Images/N2-13.jpg'
+    });
+    Imigize.create('Imigize.landing.part.ComfortFoot.ComfortForm__BtnOpen', {
+        model: Imigize.landing.part.ComfortFoot.ComfortModel,
+        article: article,
+        size: size,
+        renderTo: $('#imigize-comfortFoot')
+    });
+
+{% endblock %}

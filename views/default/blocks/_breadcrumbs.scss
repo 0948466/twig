@@ -1,0 +1,96 @@
+#{$ns}-breadcrumbs {
+    text-align: center;
+}
+
+#{$ns}-breadcrumbs-link {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: 22px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 33px;
+    letter-spacing: normal;
+    text-align: center;
+    color: #31d0e7;
+    border: solid 3px transparent;
+    cursor: pointer;
+    &:hover {
+        border: solid 3px #32d0e7;
+        border-radius: 50%;
+        #{$ns}-breadcrumbs-span {
+            color: #1a1a1a;
+        }
+    }
+}
+
+#{$ns}-breadcrumbs-link-active {
+    border: solid 3px #32d0e7;
+    border-radius: 50%;
+}
+
+#{$ns}-breadcrumbs-span {
+    position: absolute;
+    margin-left: -50px;
+    left: 50%;
+    width: 100px;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #a0a0a0;
+}
+
+#{$ns}-breadcrumbs-span-active {
+    color: #1a1a1a;
+}
+
+#{$ns}-breadcrumbs-line {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 19px;
+    height: 3px;
+}
+
+#{$ns}-breadcrumbs-line-passive {
+    background-color: #d8d8d8
+}
+
+#{$ns}-breadcrumbs-line-norm {
+    background-image: linear-gradient(to right, #32d0e7, #cfcfcf), linear-gradient(#32d0e7, #32d0e7);
+}
+
+#{$ns}-breadcrumbs-line-active {
+    background-color: #32d0e7;
+}
+
+@media only screen and (max-device-width: 1019px) {
+    #{$ns}-breadcrumbs {
+        padding: 40px 0;
+    }
+    #{$ns}-breadcrumbs-line {
+        width: 70px;
+    }
+    #{$ns}-breadcrumbs-span {
+        bottom: -20px;
+    }
+}
+
+@media only screen and (min-device-width: 1020px) {
+    #{$ns}-breadcrumbs {
+        padding: 26px 0 50px 0;
+    }
+    #{$ns}-breadcrumbs-line {
+        width: 154px;
+    }
+
+    #{$ns}-breadcrumbs-span {
+        bottom: -30px;
+    }
+}

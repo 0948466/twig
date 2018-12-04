@@ -1,0 +1,16 @@
+{% spaceless %}
+    {% if sliderPage.hints is defined %}
+        <div class="{{ ns }}-hints">
+            <div class="{{ ns }}-hints-btn">{{ "Советы как сделать правильно"| trans }}:<span class="{{ ns }}-hints-arrow"></span>
+            </div>
+            <div class="{{ ns }}-hints-description">
+                <div class="{{ ns }}-hints-description-close-icon">{{ "Закрыть"| trans }}</div>
+                {% for hintsItem in sliderPage.hints %}
+                    <div class="{{ ns }}-hints-description-item">
+                        <p class="{{ ns }}-hints-description-text">{{ hintsItem.text| trans }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endspaceless %}

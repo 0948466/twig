@@ -1,0 +1,45 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="mobile-web-app-capable" content="yes">
+        <title>{% block title %}Бесконтактная примерка обуви в интернете{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/modules/bundle/app/css/style-full.css') }}?v=%JAVASCRIPT-CSS-VERSION%">
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        {% endblock %}
+        <style type="text/css">
+            {% block styles %}{% endblock %}
+        </style>
+        <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+    </head>
+    <body>
+        <div class="imigize-layout-default">
+            <div class="imigize-layout-default-header">
+                <a href="{{ path('catalog_controller') }}" class="imigize-logo"><img src="{{ asset('images/logo.png') }}"></a>
+                <a href="{{ path('fos_user_security_logout') }}" class="imigize-logout btn btn-default">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            </div>
+            <div class="imigize-layout-default-body clearfix">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+        <div class="imigize-layout-default-footer">
+            <div class="imigize-layout-default-footer-inner">
+                &copy; Imigize copyrights, 2015
+            </div>
+        </div>
+        {% block javascripts %}
+            <script src="{{ asset('assets/modules/bundle/app/js/script-full.js') }}?v=%JAVASCRIPT-CSS-VERSION%"></script>
+        {% endblock %}
+        <script type="text/javascript">
+            {% block javascriptsInline %}{% endblock %}
+        </script>
+    </body>
+</html>
+{% endspaceless %}

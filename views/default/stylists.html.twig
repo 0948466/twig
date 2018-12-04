@@ -1,0 +1,205 @@
+{% extends '::layout/default.html.twig' %}
+
+{% block body %}
+    {% set ns = 'imigize-stylistsPage' %}
+    <section class="{{ ns }}-page">
+
+        <div class="{{ ns }}-overlay-layer">
+            <nav class="{{ ns }}-breadcrumbs-top">
+                <ul>
+                    <li><a href="#">{{ "Все"| trans }}</a></li>
+                    <li><a href="#">{{ "Я подписан"| trans }}</a></li>
+                    <li><a href="#">{{ "Новые"| trans }}</a></li>
+                    <li><a href="#">{{ "Популярные"| trans }}</a></li>
+                </ul>
+            </nav>
+
+            <div class="{{ ns }}">
+                <h2>{{ "Стилисты"| trans }}</h2>
+                <div class="{{ ns }}-catalog">
+                    <div class="{{ ns }}-filter">
+                        <form class="{{ ns }}-filter-form" action="#" method="post">
+                            <a href="#" class="{{ ns }}-btn-style7">{{ "Все стилисты"| trans }}</a>
+                        </form>
+                    </div>
+                    <div class="{{ ns }}-item clearfix" id="stylists1">
+                        <div class="{{ ns }}-item-side-left clearfix">
+                            <div class="{{ ns }}-side-left">
+                                <h3>{{ "Мария Ромашкова"| trans }}</h3>
+                                <p>{{ "Я работаю как визажист, дизайнер причесок и свадебный стилист. Регулярно провожу семинары, мастер классы. Я часто работаю на фото, видео и кино-съемках, работаю на fashion-показах, участвую в крупных проектах."| trans }}</p>
+
+                                <div class="{{ ns }}-table">
+                                    <div class="{{ ns }}-row">
+                                        <div class="{{ ns }}-cell">{{ "В избранном"| trans }}:</div>
+                                        <div class="{{ ns }}-cell"><b>7254</b></div>
+                                    </div>
+                                    <div class="{{ ns }}-row">
+                                        <div class="{{ ns }}-cell">{{ "Образы"| trans }}:</div>
+                                        <div class="{{ ns }}-cell"><b>120</b></div>
+                                    </div>
+                                    <div class="{{ ns }}-row">
+                                        <div class="{{ ns }}-cell">{{ "Рейтинг"| trans }}:</div>
+                                        <div class="{{ ns }}-cell"><b>233</b></div>
+                                    </div>
+                                </div>
+
+                                <div class="{{ ns }}-link-for-more">
+                                    <a class="{{ ns }}-link-more" href="#">{{ "Подробнее"| trans }}</a>
+                                </div>
+
+                            </div>
+                            <div class="{{ ns }}-side-right">
+                                <div class="{{ ns }}-add">
+                                    <a class="{{ ns }}-btn-add" href="#">{{ "Отслеживать"| trans }}</a>
+                                    <div class="{{ ns }}-heart"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="{{ ns }}-item-side-right">
+                        </div>
+                    </div>
+                    <div class="{{ ns }}-item clearfix" id="stylists2">
+                        <div class="{{ ns }}-item-side-left clearfix">
+                            <div class="{{ ns }}-side-left">
+                                <h3>{{ "Юлия Верхонская"| trans }}</h3>
+                                <p>{{ "Во все времена люди, добившиеся высокого общественного положения, предъявляли серьезные требования к своей внешности, поскольку осознавали, что их успех во многом зависит от впечатления, которое они производят на окружающих."| trans }}</p>
+
+                                <div class="{{ ns }}-table">
+                                    <div class="{{ ns }}-row">
+                                        <div class="{{ ns }}-cell">{{ "В избранном"| trans }}:</div>
+                                        <div class="{{ ns }}-cell"><b>4940</b></div>
+                                    </div>
+                                    <div class="{{ ns }}-row">
+                                        <div class="{{ ns }}-cell">{{ "Образы"| trans }}:</div>
+                                        <div class="{{ ns }}-cell"><b>350</b></div>
+                                    </div>
+                                    <div class="{{ ns }}-row">
+                                        <div class="{{ ns }}-cell">{{ "Рейтинг"| trans }}:</div>
+                                        <div class="{{ ns }}-cell"><b>5117</b></div>
+                                    </div>
+                                </div>
+
+                                <div class="{{ ns }}-link-for-more">
+                                    <a class="{{ ns }}-link-more" href="#">{{ "Подробнее"| trans }}</a>
+                                </div>
+                            </div>
+                            <div class="{{ ns }}-side-right">
+                                <div class="{{ ns }}-add">
+                                    <a class="{{ ns }}-btn-add" href="#">{{ "Отслеживать"| trans }}</a>
+                                    <div class="{{ ns }}-heart"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="{{ ns }}-item-side-right">
+                        </div>
+                    </div>
+                    <div class="{{ ns }}-item clearfix" id="stylists3">
+                        <div class="{{ ns }}-item-side-left clearfix">
+                            <div class="{{ ns }}-side-left">
+                                <h3>{{ "Алиса Румянцева"| trans }}</h3>
+                                <p>{{ "В зависимости от поставленных задач сменить имидж в студии можно кардинально, либо поэтапно. Личный стилист одежды и имиджа создает для вас собственну программу работы, учитывая ваши пожелания. и собственные профессиональные рекомендации."| trans }}</p>
+
+                                <div class="{{ ns }}-table">
+                                    <div class="{{ ns }}-row">
+                                        <div class="{{ ns }}-cell">{{ "В избранном"| trans }}:</div>
+                                        <div class="{{ ns }}-cell"><b>436</b></div>
+                                    </div>
+                                    <div class="{{ ns }}-row">
+                                        <div class="{{ ns }}-cell">{{ "Образы"| trans }}:</div>
+                                        <div class="{{ ns }}-cell"><b>58</b></div>
+                                    </div>
+                                    <div class="{{ ns }}-row">
+                                        <div class="{{ ns }}-cell">{{ "Рейтинг"| trans }}:</div>
+                                        <div class="{{ ns }}-cell"><b>754</b></div>
+                                    </div>
+                                </div>
+                                <div class="{{ ns }}-link-for-more">
+                                    <a class="{{ ns }}-link-more" href="#">{{ "Подробнее"| trans }}</a>
+                                </div>
+                            </div>
+                            <div class="{{ ns }}-side-right">
+                                <div class="{{ ns }}-add">
+                                    <a class="{{ ns }}-btn-add" href="#">{{ "Отслеживать"| trans }}</a>
+                                    <div class="{{ ns }}-heart"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="{{ ns }}-item-side-right">
+                        </div>
+                    </div>
+                    <div class="{{ ns }}-item clearfix" id="stylists4">
+                        <div class="{{ ns }}-item-side-left clearfix">
+                            <div class="{{ ns }}-side-left">
+                                <h3>{{ "Полина Гагаринская"| trans }}</h3>
+                                <p>{{ "Важно отметить, что часто имиджмейкеров считают стилистами одежды. Да, для многих клиентов такого рода специалист и есть личный стилист одежды. Однако наша профессия вмещает в себя гораздо более глубокие аспекты работы, чем просто грамотно сформированный гардероб."| trans }}</p>
+
+                                <div class="{{ ns }}-table">
+                                    <div class="{{ ns }}-row">
+                                        <div class="{{ ns }}-cell">{{ "В избранном"| trans }}:</div>
+                                        <div class="{{ ns }}-cell"><b>296</b></div>
+                                    </div>
+                                    <div class="{{ ns }}-row">
+                                        <div class="{{ ns }}-cell">{{ "Образы"| trans }}:</div>
+                                        <div class="{{ ns }}-cell"><b>462</b></div>
+                                    </div>
+                                    <div class="{{ ns }}-row">
+                                        <div class="{{ ns }}-cell">{{ "Рейтинг"| trans }}:</div>
+                                        <div class="{{ ns }}-cell"><b>953</b></div>
+                                    </div>
+                                </div>
+                                <div class="{{ ns }}-link-for-more">
+                                    <a class="{{ ns }}-link-more" href="#">{{ "Подробнее"| trans }}</a>
+                                </div>
+                            </div>
+                            <div class="{{ ns }}-side-right">
+                                <div class="{{ ns }}-add">
+                                    <a class="{{ ns }}-btn-add" href="#">{{ "Отслеживать"| trans }}</a>
+                                    <div class="{{ ns }}-heart"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="{{ ns }}-item-side-right">
+                        </div>
+                    </div>
+                    <div class="{{ ns }}-item clearfix" id="stylists5">
+                        <div class="{{ ns }}-item-side-left clearfix">
+                            <div class="{{ ns }}-side-left">
+                                <h3>{{ "Елена Летучая"| trans }}</h3>
+                                <p>{{ "Эти оттенки работают лучше белого или черного фона. Учтите, что цвета нужно использовать очень дозировано, для call-to-action элементов и минимальных областей брендинга, как, например, панель навигации."| trans }}</p>
+
+                                <div class="{{ ns }}-table">
+                                    <div class="{{ ns }}-row">
+                                        <div class="{{ ns }}-cell">{{ "В избранном"| trans }}:</div>
+                                        <div class="{{ ns }}-cell"><b>2682</b></div>
+                                    </div>
+                                    <div class="{{ ns }}-row">
+                                        <div class="{{ ns }}-cell">{{ "Образы"| trans }}:</div>
+                                        <div class="{{ ns }}-cell"><b>392</b></div>
+                                    </div>
+                                    <div class="{{ ns }}-row">
+                                        <div class="{{ ns }}-cell">{{ "Рейтинг"| trans }}:</div>
+                                        <div class="{{ ns }}-cell"><b>5840</b></div>
+                                    </div>
+                                </div>
+                                <div class="{{ ns }}-link-for-more">
+                                    <a class="{{ ns }}-link-more" href="#">{{ "Подробнее"| trans }}</a>
+                                </div>
+                            </div>
+                            <div class="{{ ns }}-side-right">
+                                <div class="{{ ns }}-add">
+                                    <a class="{{ ns }}-btn-add" href="#">{{ "Отслеживать"| trans }}</a>
+                                    <div class="{{ ns }}-heart"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="{{ ns }}-item-side-right">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="{{ ns }}-overlay"></div>
+            <div class="{{ ns }}-overlay-soon">{{ "Скоро"| trans }}</div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends '::layout/default.html.twig' %}
+
+{% block title %}{{ "Личный кабинет"| trans }}{% endblock %}
+
+{% block body %}
+    <div id="imigize-landing-profile"></div>
+{% endblock %}
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascriptsInline %}
+    {{ parent() }}
+    Imigize.create('Imigize.landing.ProfileRendered', {
+    user: {{ imigize_user.user | json_encode | raw }},
+    app: Imigize.integration.App,
+    registerUrl: "{{ path('homepage') }}",
+    basket: {{ basket | json_encode | raw }}
+    });
+
+{% endblock %}

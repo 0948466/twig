@@ -1,0 +1,58 @@
+$ns: '.imigize-app-singlePage-menu';
+
+#{$ns} {
+    float: right;
+    font-size: 14px;
+    line-height: 40px;
+    height: 40px;
+    margin: 25px 0;
+}
+
+#{$ns}-item {
+    display: inline-block;
+    height: 38px;
+    cursor: pointer;
+}
+
+#{$ns}-item__selected {
+    cursor: default;
+}
+
+#{$ns}-item-link {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 2px solid transparent;
+    padding: 0 10px;
+    margin: 0 10px;
+    color: #333;
+    text-decoration: none;
+
+    #{$ns}__landing & {
+        color: #fff;
+    }
+
+    #{$ns}-item__selected & {
+        border-color: #44d5f3;
+    }
+}
+
+#{$ns}-item__landingRegister {
+
+    #{$ns}-item-link {
+        background-color: red;
+        height: 38px;
+        line-height: 38px;
+        padding: 0 25px;
+        margin: 0 0 0 15px;
+        border: 1px solid #44d5f3;
+        @include border-radius(5px);
+    }
+
+    &#{$ns}-item__selected {
+        #{$ns}-item-link {
+            border-color: #44d5f3;
+        }
+    }
+
+}

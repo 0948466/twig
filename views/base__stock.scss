@@ -1,0 +1,66 @@
+#{$ns}__stock-scenario-income {
+    @include font-OpenSans('light');
+    font-size: 19px;
+    line-height: 28px;
+    color: #444;
+
+    #{$ns}-content {
+        background-image: url(/src/AppBundle/Resources/assets/AppBundle/images/ribbon.png);
+        background-repeat: repeat-x;
+        width: 1000px;
+        margin: 0 auto;
+        padding-top: 30px;
+
+        &:after {
+            content: " ";
+            visibility: hidden;
+            display: block;
+            height: 0;
+            clear: both;
+        }
+
+        &-title {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        &-left {
+            width: 70%;
+            float: left;
+        }
+
+        &-right {
+            width: 30%;
+            float: right;
+            padding: 0 30px;
+            box-sizing: border-box;
+        }
+    }
+
+    #scenario_income_form {
+        background: #fff;
+        padding: 40px;
+        border: 1px solid #ddd;
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
+        margin-bottom: 40px;
+    }
+
+    h1 {
+        font-size: 50px;
+        line-height: 60px;
+        margin-left: -3px;
+    }
+
+    h2 {
+        font-size: 24px;
+        margin: 12px 0 20px;
+    }
+
+    p {
+        margin: 50px 0;
+    }
+
+    b {
+        font-weight: bold;
+    }
+}

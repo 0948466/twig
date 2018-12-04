@@ -1,0 +1,425 @@
+document.addEventListener("DOMContentLoaded", function() {
+    var Faq = {
+        init: function() {
+            var me = this;
+
+            me.ns = 'imigize-faq';
+
+            me.hashLink = window.location.hash.replace('#', '');
+
+            me.breadcrumbs = $('.' + me.ns + '-breadcrumbs');
+            me.breadcrumbsLink = $('.' + me.ns + '-breadcrumbs-link');
+            me.CLASS_BREADCRUMBS_LINK = (me.ns + '-breadcrumbs-link');
+            me.CLASS_BREADCRUMBS_LINK_ACTIVE = (me.ns + '-breadcrumbs-link-active');
+
+            me.breadcrumbsSpan = $('.' + me.ns + '-breadcrumbs-span');
+            me.CLASS_BREADCRUMBS_SPAN = (me.ns + '-breadcrumbs-span');
+            me.CLASS_BREADCRUMBS_SPAN_ACTIVE = (me.ns + '-breadcrumbs-span-active');
+
+            me.breadcrumbsLine = $('.' + me.ns + '-breadcrumbs-line');
+            me.CLASS_BREADCRUMBS_SPAN_LINE_PASSIVE = (me.ns + '-breadcrumbs-line-passive');
+            me.CLASS_BREADCRUMBS_SPAN_LINE_NORM = (me.ns + '-breadcrumbs-line-norm');
+            me.CLASS_BREADCRUMBS_SPAN_LINE_ACTIVE = (me.ns + '-breadcrumbs-line-active');
+
+            me.slider = $('.' + me.ns + '-slider');
+            me.CLASS_SLIDER = (me.ns + '-slider');
+            me.sliderItem = $('.' + me.ns + '-slider-item');
+            me.CLASS_SLIDER_ITEM = (me.ns + '-slider-item');
+
+            me.CLASS_SLIDER_PICTURE = (me.ns + '-slider-picture');
+            me.CLASS_SLIDER_PICTURE_BIG = (me.ns + '-slider-picture_big');
+            me.sliderImg = $('.' + me.ns + '-slider-img');
+            me.CLASS_SLIDER_IMG = (me.ns + '-slider-img');
+            me.CLASS_SLIDER_IMG_ACTIVE = (me.ns + '-slider-img_active');
+
+            me.CLASS_SWIPER_WRAPPER = ('swiper-wrapper');
+            me.CLASS_SLIDER_IMG_BIG = (me.ns + '-slider-img_big');
+            me.CLASS_IMG_BIG_WRONG = (me.ns + '-slider-img_big_wrong');
+
+            me.CLASS_SWIPER_SLIDE = ('swiper-slide');
+            me.CLASS_SLIDER_TEXT_SMALL = (me.ns + '-slider-text_small');
+            me.CLASS_SLIDER_TEXT_BIG = (me.ns + '-slider-text_big');
+
+            me.pageCounterSpan = $('.' + me.ns + '-page-counter-span');
+
+            me.btnNext = $('.' + me.ns + '-btn-next');
+            me.btnNextSpan = $('.' + me.ns + '-btn-next-span');
+
+            me.iconBack = $('.' + me.ns + '-icon-back-link');
+
+            me.hintsBtn = $('.' + me.ns + '-hints-btn');
+            me.hintsBtnBig = $('.' + me.ns + '-hints-btn_big');
+            me.CLASS_HINTS = (me.ns + '-hints');
+            me.CLASS_HINTS_DESCRIPTION = (me.ns + '-hints-description');
+
+            me.hintsCloseIcon = $('.' + me.ns + '-hints-description-close-icon');
+            me.CLASS_HINTS_CLOSE_ICON = (me.ns + '-hints-description-close-icon');
+
+            me.hintsArrow = $('.' + me.ns + '-hints-arrow');
+            me.CLASS_HINTS_ARROW = (me.ns + '-hints-arrow');
+            me.CLASS_HINTS_ARROW__ACTIVE = (me.ns + '-hints-arrow__active');
+
+            me.swiperWrapper = $('.swiper-wrapper');
+            me.swiperPagination = $('.swiper-pagination');
+
+            me.BTN1 = '{{ "Подготовка к съемке"| trans }}';
+            me.BTN2 = '{{ "Съемка ног"| trans }}';
+
+            me.binds();
+
+            me.initWindowWidth();
+        },
+
+        binds: function() {
+            var me = this,
+                $window = Imigize.$window();
+
+            if ($window.width() > 1019) {
+                me.sliderImg.on('click', me.onSliderImgClick.bind(me));
+            }
+
+            me.breadcrumbsLink.on('click', me.onBreadcrumbsLinkClick.bind(me));
+            me.btnNext.on('click', me.onBtnNextClick.bind(me));
+            me.hintsBtn.on('click', me.onHintsBtnClick.bind(me));
+            me.hintsBtnBig.on('click', me.onHintsBtnClick.bind(me));
+            me.hintsCloseIcon.on('click', me.onHintsCloseIconClick.bind(me));
+            me.iconBack.on('click', me.onIconBackClick.bind(me));
+        },
+
+        onIconBackClick: function(e) {
+            e.preventDefault();
+            this.initReferrer();
+
+        },
+
+        initReferrer: function() {
+
+            if ((document.referrer).indexOf('{{ app.request.getSchemeAndHttpHost() }}/') == 0) {
+                window.close();
+            } else {
+                window.location = '/';
+            }
+        },
+
+        isVisible: function(tag) {
+            var t = $(tag),
+                w = Imigize.$window(),
+                wt = w.scrollTop(),
+                tt = t.offset().top,
+                tb = tt + t.height(),
+                paddingMarginTag;
+
+            if ((tb <= wt + w.height()) && (tt + t.height() + 60 >= wt)) {
+                return false;
+            } else {
+                paddingMarginTag = parseInt(t.css('paddingTop'), 10) + parseInt(t.css('paddingBottom'), 10) + parseInt(t.css('marginTop'), 10);
+
+                if (wt > tt) {
+                    $('html, body').animate({scrollTop: (wt - t.height() - paddingMarginTag)}, 0);
+                }
+                return true;
+            }
+
+        },
+
+
+        onSliderImgClick: function(e, targetHash, firstSlider) {
+
+            if (!firstSlider) {
+                this.sliderImgReload(e);
+            }
+
+            var me = this,
+                target = firstSlider || targetHash || $(e.target),
+
+                wrapper = target.closest('.' + me.CLASS_SWIPER_WRAPPER),
+                imgSmall = wrapper.find('.' + me.CLASS_SLIDER_IMG),
+                imgBig,
+                pictureSmallHtml = target.closest('.' + me.CLASS_SLIDER_PICTURE).html(),
+                pictureBig = wrapper.find('.' + me.CLASS_SLIDER_PICTURE_BIG),
+                slide = target.closest('.' + me.CLASS_SWIPER_SLIDE),
+                textSmallHtml = slide.find('.' + me.CLASS_SLIDER_TEXT_SMALL).html();
+
+            wrapper.find('.' + me.CLASS_SLIDER_TEXT_BIG).html(textSmallHtml);
+
+            pictureBig.html(pictureSmallHtml);
+            pictureBig.find('.' + me.CLASS_SLIDER_IMG).removeClass().addClass(me.CLASS_SLIDER_IMG_BIG);
+
+
+            imgSmall.removeClass(me.CLASS_SLIDER_IMG_ACTIVE);
+
+            target.addClass(me.CLASS_SLIDER_IMG_ACTIVE);
+            imgBig = wrapper.find('.' + me.CLASS_SLIDER_IMG_BIG);
+
+
+            me.addImgBigWrong(target, imgBig);
+            if (!firstSlider) {
+
+            }
+
+
+        },
+
+        sliderImgReload: function(e) {
+            var me = this, i, firstSlider, closeHints, hints, topSlider,
+                sliderItem = $(e.target).closest('.' + me.CLASS_SLIDER_ITEM);
+
+
+            for (i = 0; i < me.sliderItem.length; i++) {
+
+                if (sliderItem.data('slide') == me.sliderItem.eq(i).data('slide')) {
+                    continue;
+                }
+
+                firstSlider = me.sliderItem.eq(i).find('.' + me.CLASS_SLIDER_IMG).eq(0);
+
+                hints = me.sliderItem.eq(i).find('.' + me.CLASS_HINTS_DESCRIPTION);
+
+                if (hints.css('display') != 'none' && me.isVisible(hints)) {
+                    closeHints = me.sliderItem.eq(i).find('.' + me.CLASS_HINTS_CLOSE_ICON);
+
+                    me.onHintsBtnClick(0, closeHints, 1);
+                }
+
+                me.onSliderImgClick(0, 0, firstSlider);
+            }
+
+
+        },
+
+        addImgBigWrong: function(target, imgBig) {
+            var me = this;
+
+            if (target.data('wrong') == 'yes') {
+                imgBig.addClass(me.CLASS_IMG_BIG_WRONG);
+            } else {
+                imgBig.removeClass(me.CLASS_IMG_BIG_WRONG);
+            }
+        },
+
+        initWindowWidth: function() {
+            var me = this,
+                $window = Imigize.$window();
+
+            if ($window.width() < 1020) {
+                me.BTN3 = '{{ "Закрыть инструкцию"| trans }}';
+                me.initSwiper();
+                me.initSwiperPaginator();
+                if (me.hashLink) {
+                    me.initHash(me.hashLink, 1);
+                } else {
+                    me.initSlider(0);
+                }
+            } else {
+                me.BTN3 = '{{ "Закрыть инструкцию"| trans }}';
+                me.initImgActive();
+                if (me.hashLink) {
+                    me.initHash(me.hashLink, 0);
+                } else {
+                    me.initSlider(0);
+                }
+            }
+        },
+
+        initImgActive: function() {
+            var me = this, i;
+
+            for (i = 0; i < me.swiperWrapper.length; i++) {
+                me.swiperWrapper.eq(i).find('.' + me.CLASS_SLIDER_IMG).eq(0).addClass(me.CLASS_SLIDER_IMG_ACTIVE);
+            }
+        },
+
+        initHash: function(hash, mobile) {
+            var me = this, html = $('html, body'),
+                hashArr = hash.split('.'), targetSlide, targetImg,
+                swiperSliderItem;
+
+            switch (+hashArr[0]) {
+                case 1:
+                    swiperSliderItem = +hashArr[1] - 1;
+                    break;
+                case 2:
+                    swiperSliderItem = me.slider.eq(0).find('.' + me.CLASS_SLIDER_ITEM).length + +hashArr[1] - 1;
+                    break;
+                case 3:
+                    swiperSliderItem = me.slider.eq(0).find('.' + me.CLASS_SLIDER_ITEM).length +
+                        me.slider.eq(1).find('.' + me.CLASS_SLIDER_ITEM).length + +hashArr[1] - 1;
+                    break;
+            }
+
+            me.onBreadcrumbsLinkClick(0, $(me.breadcrumbsLink[hashArr[0] - 1]));
+
+            targetSlide = me.sliderItem.filter('[data-slide="' + hashArr[0] + '.' + hashArr[1] + '"]');
+
+
+            html.animate({scrollTop: $(targetSlide).offset().top}, 500);
+
+
+            if (mobile) {
+                this.swiper[swiperSliderItem].slideTo(hashArr[2] - 1);
+            } else {
+                targetImg = targetSlide.find('.' + me.CLASS_SLIDER_IMG).filter('[data-img="' + hashArr[2] + '"]');
+                me.onSliderImgClick(0, targetImg);
+            }
+        }
+        ,
+
+        initSwiperPaginator: function() {
+            var me = this, i;
+
+            for (i = 0; i < me.swiperPagination.length; i++) {
+                if (me.swiperPagination[i].children.length < 2) {
+                    me.swiperPagination[i].style.display = 'none';
+                }
+            }
+        }
+        ,
+
+        initSwiper: function() {
+            this.swiper = new Imigize.Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                slidesPerView: 'auto',
+                centeredSlides: false,
+                paginationClickable: true,
+                spaceBetween: 10,
+                slideToClickedSlide: true,
+                observer: true,
+                observeParents: true
+            });
+        }
+        ,
+
+        updateSwiper: function() {
+
+            if ($.isArray(this.swiper)) {
+                for (var i = 0; i < this.swiper.length; i++) {
+                    this.swiper[i].update();
+                }
+            }
+        }
+        ,
+
+        onHintsBtnClick: function(e, targetClose, instantly, allHide) {
+            var me = this,
+                target = targetClose || $(e.target),
+                parent = target.closest('.' + me.CLASS_SLIDER_ITEM),
+                description = parent.find('.' + me.CLASS_HINTS_DESCRIPTION),
+                arrow = parent.find('.' + me.CLASS_HINTS_ARROW);
+
+            if (allHide && !arrow.hasClass(me.CLASS_HINTS_ARROW__ACTIVE)) {
+                return;
+            }
+
+            if (instantly) {
+                description.hide();
+            } else {
+                description.slideToggle("fast");
+            }
+
+            arrow.toggleClass(me.CLASS_HINTS_ARROW__ACTIVE);
+        }
+        ,
+
+        onHintsCloseIconClick: function(e) {
+            var me = this,
+                targetClose = $(e.target);
+
+            me.onHintsBtnClick(0, targetClose);
+        }
+        ,
+
+        onBtnNextClick: function() {
+            var me = this, i, breadcrumbsLink;
+            for (i = 0; i < me.breadcrumbsLink.length; i++) {
+                if ($(me.breadcrumbsLink[i]).hasClass(me.CLASS_BREADCRUMBS_LINK_ACTIVE)) {
+                    if (i == me.breadcrumbsLink.length - 1) {
+                        me.initReferrer();
+                        break;
+                    }
+                    breadcrumbsLink = $(me.breadcrumbsLink[i + 1]);
+                    me.onBreadcrumbsLinkClick(0, breadcrumbsLink);
+                    if (me.breadcrumbs) {
+                        $('html, body').animate({scrollTop: me.breadcrumbs.offset().top}, 0);
+                    } else $('html, body').animate({scrollTop: $(me.slider[i + 1]).offset().top}, 0);
+
+                    break;
+                }
+            }
+        }
+        ,
+
+        onBreadcrumbsLinkClick: function(e, breadcrumbsLink) {
+            var me = this,
+                link = breadcrumbsLink || $(e.target).closest('.' + me.CLASS_BREADCRUMBS_LINK),
+                span = link.find('.' + me.CLASS_BREADCRUMBS_SPAN);
+
+            me.breadcrumbsLink.removeClass(me.CLASS_BREADCRUMBS_LINK_ACTIVE);
+            me.breadcrumbsSpan.removeClass(me.CLASS_BREADCRUMBS_SPAN_ACTIVE);
+
+            link.addClass(me.CLASS_BREADCRUMBS_LINK_ACTIVE);
+            span.addClass(me.CLASS_BREADCRUMBS_SPAN_ACTIVE);
+
+            me.initBreadcrumbsLinkActive();
+            me.updateSwiper();
+            me.swiperHintsHide();
+        }
+        ,
+
+        swiperHintsHide: function() {
+            var me = this, i,
+                instantly = true, allHide = true;
+            for (i = 0; i < me.hintsBtn.length; i++) {
+                me.onHintsBtnClick(0, me.hintsBtn.eq(i), instantly, allHide);
+            }
+        }
+        ,
+
+        initBreadcrumbsLinkActive: function() {
+            var me = this, i;
+            for (i = 0; i < me.breadcrumbsLink.length; i++) {
+                if ($(me.breadcrumbsLink[i]).hasClass(me.CLASS_BREADCRUMBS_LINK_ACTIVE)) {
+                    me.initLine(i);
+                    $(me.pageCounterSpan).text(i + 1);
+                    break;
+                }
+            }
+        }
+        ,
+
+        initLine: function(i) {
+            var me = this;
+            me.breadcrumbsLine.removeClass(me.CLASS_BREADCRUMBS_SPAN_LINE_PASSIVE).removeClass(me.CLASS_BREADCRUMBS_SPAN_LINE_ACTIVE).removeClass(me.CLASS_BREADCRUMBS_SPAN_LINE_NORM);
+
+            switch (i) {
+                case 0:
+                    $(me.breadcrumbsLine[0]).addClass(me.CLASS_BREADCRUMBS_SPAN_LINE_NORM);
+                    $(me.breadcrumbsLine[1]).addClass(me.CLASS_BREADCRUMBS_SPAN_LINE_PASSIVE);
+                    $(me.btnNextSpan).text(me.BTN1);
+                    me.initSlider(i);
+                    break;
+                case 1:
+                    $(me.breadcrumbsLine[0]).addClass(me.CLASS_BREADCRUMBS_SPAN_LINE_ACTIVE);
+                    $(me.breadcrumbsLine[1]).addClass(me.CLASS_BREADCRUMBS_SPAN_LINE_NORM);
+                    $(me.btnNextSpan).text(me.BTN2);
+                    me.initSlider(i);
+                    break;
+                case 2:
+                    $(me.breadcrumbsLine[0]).addClass(me.CLASS_BREADCRUMBS_SPAN_LINE_ACTIVE);
+                    $(me.breadcrumbsLine[1]).addClass(me.CLASS_BREADCRUMBS_SPAN_LINE_ACTIVE);
+                    $(me.btnNextSpan).text(me.BTN3);
+                    me.initSlider(i);
+                    break;
+            }
+        }
+        ,
+        initSlider: function(i) {
+            var me = this, j;
+            for (j = 0; j <= me.slider.length; j++) {
+                $(me.slider[j]).hide();
+            }
+            $(me.slider[i]).show();
+        }
+    };
+
+    Faq.init();
+});

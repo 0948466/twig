@@ -1,0 +1,118 @@
+{% extends '::layout/default.html.twig' %}
+
+{% block body %}
+    {% spaceless %}
+        {% set ns = 'imigize-app-contactsPage' %}
+        <div class="{{ ns }}">
+            <h1 class="{{ ns }}-title">{{ "Контакты"| trans }}</h1>
+            {% set successSend = app.session.flashBag.get('contacts_success') %}
+            {% if successSend is not empty %}
+                {% set name = app.session.flashBag.get('contacts_name') %}
+                {% if successSend[0] %}
+                    <div class="{{ ns }}-send-messege">
+                        {% if name is not empty %}{{ name[0] }}, {{ "сообщение отправлено"| trans }}.
+                        {% else %}{{ "Сообщение отправлено"| trans }}.
+                        {% endif %}
+                    </div>
+                {% else %}
+            {{ "Произошла ошибка, повторите позже или напишите нам на почту"| trans }}
+                {% endif %}
+            {% endif %}
+
+            <div class="{{ ns }}-contacts-list">
+                <h2>{{ "Офис компании «Imigize»"| trans }}</h2>
+                <p>{{ "8 (812) 380-58-58, понедельник-пятница с 9:00 до 20:00"| trans }}</p>
+                <p>{{ "г. Санкт- Петербург, ул. Киевская д.8 корп.2 лит.А"| trans }}</p>
+                <p>{{ "Почта"| trans}}: <a href="mailto:sales@imigize.com">sales@imigize.com</a></p>
+            </div>
+            <div class="{{ ns }}-map-wrapper">
+                <h2>{{ "Карта проезда"| trans}}:</h2>
+                <div class="{{ ns }}-map" id="imigize-map"></div>
+            </div>
+
+            {% if 'lang' | trans != 'ru' %}
+                <div class="{{ ns }}-contacts-list">
+                    <h2>{{ "Imigize Group | Hong Kong Office information"| trans }}</h2>
+                    <p>{{ "Unit 2403, Tung Wai Commercial Building,"| trans }}</p>
+                    <p>{{ "109-111 Gloucester Road,"| trans }}</p>
+                    <p>{{ "Wanchai, Hong Kong "| trans }}</p>
+                    <p>{{ "E-mail"| trans}}: <a href="mailto:IR@imigize.com">IR@imigize.com</a></p>
+                </div>
+                <div class="{{ ns }}-map-wrapper">
+                    <h2>{{ "Карта проезда"| trans}}:</h2>
+                    <div class="{{ ns }}-map" id="imigize-map2"></div>
+                </div>
+            {% endif %}
+
+            <form method="post" class="{{ ns }}-form" action="{{ path('contacts_request_action') }}">
+                <h2 class="{{ ns }}-form-title">
+                    {{ "Форма обратной связи"| trans }}
+                </h2>
+                <p class="{{ ns }}-form-text">
+                    {{ "Оставьте ваши контакты в форме ниже или просто напишите нам на"| trans }}
+                    <a href="mailto:sales@imigize.com">sales@imigize.com</a><br>
+                    {{ "Наши специалисты ответят вам в ближайшее время."| trans }}
+                    <a class="{{ ns }}-link-for-entrance-arrow"| trans ></a>
+                </p>
+                <div class="{{ ns }}-form-item">
+                    <h3 class="{{ ns }}-form-item-title">{{ "Обратная связь"| trans }}</h3>
+
+                    <label>
+                        <p class="{{ ns }}-form-item-left">*{{ "Имя"| trans }}</p>
+                        <input class="{{ ns }}-form-item-input" type="text" name="name" id="{{ ns }}-name"
+                               required>
+                    </label>
+                    <label>
+                        <p class="{{ ns }}-form-item-left">*{{ "Укажите, на какой email прислать ответ на ваше сообщение"| trans }}</p>
+                        <input class="{{ ns }}-form-item-input" type="email" name="email"
+                               id="{{ ns }}-email" required>
+                    </label>
+                    <label>
+                        <p class="{{ ns }}-form-item-left"> {{ "Если вы регистрировались в Имиджайз - укажите email при регистрации"| trans }}</p>
+                        <input class="{{ ns }}-form-item-input" type="email" name="emailImigize"
+                               id="{{ ns }}-email">
+                    </label>
+                    <label>
+                        <p class="{{ ns }}-form-item-left"> {{ "Ваш скайп"| trans }}</p>
+                        <input class="{{ ns }}-form-item-input"
+                               type="text" name="skype" id="{{ ns }}-skype">
+                    </label>
+                    <label>
+                        <p class="{{ ns }}-form-item-left"> {{ "Телефон"| trans }}</p>
+                        <input class="{{ ns }}-form-item-input {{ ns }}-form-item-input-phone"
+                               type="text" name="phone" id="{{ ns }}-phone">
+                    </label>
+                    <label>
+                        <p class="{{ ns }}-form-item-left">*{{ "Ваше сообщение"| trans }}</p>
+                        <textarea class="{{ ns }}-form-item-input {{ ns }}-form-item-input-message" rows="6"
+                                  type="text" name="message" placeholder="({{ "укажите максимум деталей"| trans }})"
+                                  id="{{ ns }}-message" required></textarea>
+                    </label>
+                    <input class="{{ ns }}-form-btn" value="{{ "Отправить сообщение в Imigize"| trans }}" type="submit">
+                </div>
+            </form>
+        </div>
+        <script>
+            {% include ':default:contacts.js.twig' %}
+        </script>
+    {% endspaceless %}
+{% endblock %}
+
+{% block javascriptsInline %}
+    {{ parent() }}
+    Imigize.ya.maps.Loader.load(function(YMaps) {
+    Imigize.create('Imigize.ya.maps.map.ImigizeMap', {
+    el: '#imigize-map',
+    lang: '{{ app.request.locale }}'
+    });
+    });
+    {% if 'lang' | trans != 'ru' %}
+    Imigize.ya.maps.Loader.load(function(YMaps) {
+    Imigize.create('Imigize.ya.maps.map.ImigizeMap', {
+    el: '#imigize-map2',
+    lang: '{{ app.request.locale }}',
+    hongKong: 'true'
+    });
+    });
+    {% endif %}
+{% endblock %}

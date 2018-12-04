@@ -1,0 +1,70 @@
+{% spaceless %}
+    {% set ns = 'imigize-app-header' %}
+    {% set local = app.request.locale %}
+    <header class="{{ ns }}-main-header">
+            <div class="{{ ns }}-header-logo">
+                <a class="{{ ns }}-link" href="{{ path('homepage') }}">
+                    <div class="{{ ns }}-imigize">IMIGIZE</div>
+                </a>
+            </div>
+
+            {% block NavMenuLink %}
+                {% if menu is defined %}
+                    <nav class="{{ ns }}-main-navigation">
+                        <ul class="{{ ns }}-main-menu">
+                            {% for menuItem in menu %}
+                                <li><a class="{{ ns }}-link" href="{{ menuItem.path }}{% if menuItem.addPath is defined %}/{{ menuItem.addPath | trans }}{% endif %}">{{ menuItem.title | trans }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </nav>
+                {% endif %}
+
+            {% endblock %}
+
+
+            {% block personalBlock %}
+                <div class="{{ ns }}-china-coming-soon">
+                    <div>Скоро</div>
+                    <div>Coming soon</div>
+                    <div>快来了</div>
+                </div>
+                <div class="{{ ns }}-user-block">
+                    <div class="{{ ns }}-local-change">
+                        <a
+                            class="
+                                {{ ns }}-link-local-change
+                                {% if locale is defined and locale == 'en' %}
+                                    {{ ns }}-link-local-change__active
+                                {% endif %}
+                            " href="#" data-locale="en"
+                        >en</a>
+                        <a class="
+                                {{ ns }}-link-local-change
+                                {% if locale is defined and locale == 'ru' %}
+                                    {{ ns }}-link-local-change__active
+                                {% endif %}
+                            " href="#" data-locale="ru"
+                        >ru</a>
+                        <a class="
+                                {{ ns }}-link-local-change
+                                {% if locale is defined and locale == 'cn' %}
+                                    {{ ns }}-link-local-change__active
+                                {% endif %}
+                            " href="#" data-locale="cn"
+                        >中文</a>
+                    </div>
+                    <a class="{{ ns }}-icon {{ ns }}-personal">{{ "Мой ID" | trans }}</a>
+
+                    {% block sidebar %}
+                        {% include ':layout/default:sidebar.html.twig' %}
+                    {% endblock %}
+                </div>
+                <div class="{{ ns }}-profile"></div>
+            {% endblock %}
+    </header>
+
+    <script>
+        {% include ':layout/default:header.js.twig' %}
+    </script>
+{% endspaceless %}

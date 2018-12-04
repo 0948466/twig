@@ -1,0 +1,56 @@
+{% spaceless %}
+    {% set ns = 'imigize-pagination' %}
+    {# the number of first and last pages to be displayed #}
+    {% set extremePagesLimit = 2 %}
+
+    {# the number of pages that are displayed around the active page #}
+    {% set nearbyPagesLimit = 1 %}
+
+    {% if total > 1 %}
+        <div class="{{ ns }}">
+            <ul class="{{ ns }}-center">
+                {% if current > 1 %}
+
+                    {% for i in range(1, extremePagesLimit) if ( i < current - nearbyPagesLimit ) %}
+                        <li class="{{ ns }}-page">
+                            <a href="{{ path(route.name, route.params|merge({ page: i })) }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+
+                    {% if extremePagesLimit + 1 < current - nearbyPagesLimit %}
+                        <li class="{{ ns }}-otherPages">...</li>
+                    {% endif %}
+
+                    {% for i in range(current-nearbyPagesLimit, current-1) if ( i > 0 ) %}
+                        <li class="{{ ns }}-page">
+                            <a href="{{ path(route.name, route.params|merge({ page: i })) }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+
+                <li class="{{ ns }}-page {{ ns }}-page_current">
+                    <a>{{ current }}</a>
+                </li>
+
+                {% if current < total %}
+                    {% for i in range(current+1, current + nearbyPagesLimit) if ( i <= total ) %}
+                        <li class="{{ ns }}-page">
+                            <a href="{{ path(route.name, route.params|merge({ page: i })) }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+
+                    {% if  (total - extremePagesLimit) > (current + nearbyPagesLimit) %}
+                        <li class="{{ ns }}-otherPages">...</li>
+                    {% endif %}
+
+                    {% for i in range(total - extremePagesLimit+1, total) if ( i > current + nearbyPagesLimit ) %}
+                        <li class="{{ ns }}-page">
+                            <a href="{{ path(route.name, route.params|merge({ page: i })) }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+
+{% endspaceless %}

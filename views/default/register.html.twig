@@ -1,0 +1,15 @@
+{% extends '::layout/default.html.twig' %}
+
+{% block body %}
+    <div id="imigize-landing"></div>
+{% endblock %}
+
+{% block javascriptsBase %}
+    {{ parent() }}
+    <script>
+        Imigize.create('Imigize.landing.RegRendered', {
+            user: {{ imigize_user.user | json_encode | raw }},
+            locale: "{{ app.request.locale }}"
+        });
+    </script>
+{% endblock %}

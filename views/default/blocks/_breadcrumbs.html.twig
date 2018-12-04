@@ -1,0 +1,15 @@
+{% spaceless %}
+    <nav class="{{ ns }}-breadcrumbs">
+        <a class="{{ ns }}-breadcrumbs-link {{ ns }}-breadcrumbs-link-active">1
+            <span class="{{ ns }}-breadcrumbs-span {{ ns }}-breadcrumbs-span-active">{{ "Помещение"| trans }}</span>
+        </a>
+        <div class="{{ ns }}-breadcrumbs-line {{ ns }}-breadcrumbs-line-norm"></div>
+        <a class="{{ ns }}-breadcrumbs-link">2
+            <span class="{{ ns }}-breadcrumbs-span">{{ "Подготовка"| trans }}</span>
+        </a>
+        <div class="{{ ns }}-breadcrumbs-line {{ ns }}-breadcrumbs-line-passive"></div>
+        <a class="{{ ns }}-breadcrumbs-link">3
+            <span class="{{ ns }}-breadcrumbs-span">{{ "Съемка"| trans }}</span>
+        </a>
+    </nav>
+{% endspaceless %}

@@ -1,0 +1,78 @@
+{% extends '::layout/default.html.twig' %}
+
+{% block body %}
+    {% set ns = 'imigize-style-images' %}
+    <div class="{{ ns }}-overlay-layer">
+
+        <nav class="{{ ns }}-breadcrumbs-top">
+            <ul>
+                <li><a href="#">{{ "Все"| trans }}</a></li>
+                <li><a href="#">{{ "Я подписан"| trans }}</a></li>
+                <li><a href="#">{{ "Новые"| trans }}</a></li>
+                <li><a href="#">{{ "Популярные"| trans }}</a></li>
+            </ul>
+        </nav>
+
+        <div class="{{ ns }}">
+            <h2>{{ "Образы"| trans }}</h2>
+            <div class="{{ ns }}-catalog clearfix">
+
+                <div class="{{ ns }}-filter">
+                    <form class="{{ ns }}-filter-form" action="#" method="post">
+                        <a href="#" class="{{ ns }}-btn-style7">{{ "Создать свой"| trans }}</a>
+                    </form>
+                </div>
+
+                <div class="{{ ns }}-catalog-item" id="style-images1">
+                    <div class="{{ ns }}-img"></div>
+                    {{ "Наталья Сизова"| trans }}
+                </div>
+
+                <div class="{{ ns }}-catalog-item" id="style-images2">
+                    <div class="{{ ns }}-img"></div>
+                    {{ "Алена Карпова"| trans }}
+                </div>
+
+                <div class="{{ ns }}-catalog-item" id="style-images3">
+                    <div class="{{ ns }}-img"></div>
+                    {{ "Инесса Ланская"| trans }}
+                </div>
+
+                <div class="{{ ns }}-catalog-item" id="style-images4">
+                    <div class="{{ ns }}-img"></div>
+                    {{ "Наталья Сизова"| trans }}
+                </div>
+
+                <div class="{{ ns }}-catalog-item" id="style-images5">
+                    <div class="{{ ns }}-img"></div>
+                    {{ "Алена Карпова"| trans }}
+                </div>
+
+                <div class="{{ ns }}-catalog-item" id="style-images6">
+                    <div class="{{ ns }}-img"></div>
+                    {{ "Инесса Ланская"| trans }}
+                </div>
+
+                <div class="{{ ns }}-catalog-item" id="style-images7">
+                    <div class="{{ ns }}-img"></div>
+                    {{ "Наталья Сизова"| trans }}
+                </div>
+
+                <div class="{{ ns }}-catalog-item" id="style-images8">
+                    <div class="{{ ns }}-img"></div>
+                    {{ "Алена Карпова"| trans }}
+                </div>
+
+                <div class="{{ ns }}-catalog-item" id="style-images9">
+                    <div class="{{ ns }}-img"></div>
+                    {{ "Инесса Ланская"| trans }}
+                </div>
+
+            </div>
+        </div>
+
+        <div class="{{ ns }}-overlay"></div>
+        <div class="{{ ns }}-overlay-soon">{{ "Скоро"| trans }}</div>
+
+    </div>
+{% endblock %}

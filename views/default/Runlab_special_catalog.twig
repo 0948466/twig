@@ -1,0 +1,38 @@
+{% extends '::layout/default.html.twig' %}
+
+{% block favicon %}
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon-runlab.png') }}">
+{% endblock %}
+
+{% block title %}{{ "Каталог измеренной обуви | Интернет-магазин Runlab"| trans }}{% endblock %}
+
+{% block body %}
+    {% include 'CatalogBundle:Default:index/filter-runlab.html.twig' with {index: true} only %}
+{% endblock %}
+
+
+{% block header %}
+    <div id="imigize-header-runlab"></div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        Imigize.create('Imigize.catalog.view.runlab.header.Header__Runlab', {
+            renderTo: $('#imigize-header-runlab')
+        });
+    </script>
+
+    <script>
+        {% include '@Catalog/Default/index/products.js.twig' with {
+            linesCount: 2,
+            noHistory: true,
+            category: 'runlab',
+            warehouse: 'runlab'
+        } only
+        %}
+    </script>
+{% endblock %}

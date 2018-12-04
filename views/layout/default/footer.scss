@@ -1,0 +1,233 @@
+$ns: '.imigize-app-footer';
+
+#{$ns} {
+    display: flex;
+    padding: 1.4em 2% 7em 5.3%;
+    justify-content: space-between;
+    @include font-OpenSans('semibold');
+    text-align: center;
+    background-color: #e9eeef;
+    color: rgb(61, 61, 61);
+    overflow: hidden;
+}
+
+#{$ns}-left {
+    padding: 2% 0;
+    align-self: flex-end;
+    flex-basis: 250px;
+    flex-shrink: 0;
+    text-align: left;
+}
+
+#{$ns}-logo {
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 1em;
+
+    a {
+        @include font-Imigize();
+        font-size: 28px;
+        @include responsiveFont(28px, 20px);
+        color: #03cce5;
+        text-decoration: none;
+    }
+}
+
+#{$ns}-copyright {
+    @include font-OpenSans('semibold');
+    @include responsiveFont(11.76px, 10px);
+    line-height: 1.445;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+    color: #000;
+}
+
+#{$ns}-right {
+    display: flex;
+    padding: 2% 4%;
+    justify-content: flex-end;
+}
+
+#{$ns}-imigize-io {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 7%;
+    flex-basis: 193px;
+    text-align: left;
+}
+
+#{$ns}-imigize-io-link {
+    display: inline-block;
+    vertical-align: top;
+    @include responsiveFont(14.32px, 12px);
+    line-height: 2.02;
+    font-weight: 500;
+    color: #00accd;
+    letter-spacing: -0.025em;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#{$ns}-menu {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 3.3em;
+    flex-basis: 261px;
+    min-width: 238px;
+    text-align: left;
+    @include w320-767 {
+        flex-basis: 100%;
+    }
+
+}
+
+#{$ns}-menu-link {
+    display: inline-block;
+    vertical-align: top;
+    width: 47%;
+    max-width: 90px;
+    @include responsiveFont(14.32px, 12px);
+    line-height: 2.02;
+    font-weight: 500;
+    color: #636363;
+    letter-spacing: -0.025em;
+    text-decoration: none;
+    cursor: pointer;
+    @include w320-767 {
+        margin-right: 6%;
+    }
+
+    &:nth-child(even) {
+        margin-right: 6%;
+        width: 30%;
+    }
+    &:hover {
+        color: #32d0e7;
+    }
+}
+
+#{$ns}-menu-link__toMap {
+    display: none;
+
+    #{$defaultPage} & {
+        display: inline-block;
+    }
+}
+
+#{$ns}-imigize-io-title,
+#{$ns}-menu-title,
+#{$ns}-social-title {
+    margin-bottom: 10px;
+    font-size: 16px;
+    @include responsiveFont(16px, 14px);
+    font-weight: 400;
+    line-height: 1.4375;
+    color: #000;
+}
+
+#{$ns}-social {
+    display: inline-block;
+    vertical-align: top;
+    flex-basis: 226px;
+    text-align: left;
+    @include w320-767 {
+        flex-basis: 100%;
+    }
+}
+
+#{$ns}-social a {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 25px;
+    width: 47%;
+    max-width: 105px;
+    box-sizing: border-box;
+    @include responsiveFont(14.32px, 12px);
+    line-height: 2.02;
+    font-weight: 500;
+    color: #636363;
+    letter-spacing: -0.025em;
+    text-decoration: none;
+    cursor: pointer;
+    @include w320-767 {
+        margin-right: 3%;
+    }
+    &:nth-child(even) {
+        margin-right: 6%;
+        @include w320-767 {
+            margin-right: 3%;
+        }
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+    &:hover {
+        color: #32d0e7;
+    }
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        margin-top: -8px;
+        width: 16px;
+        height: 16px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+}
+
+#{$ns}-social-link__vk::before {
+    background-image: image-url("footer/icon-vk.svg");
+}
+
+#{$ns}-social-link__fb::before {
+    background-image: image-url("footer/icon-fb.svg");
+}
+
+#{$ns}-social-link__tw::before {
+    background-image: image-url("footer/icon-tw.svg");
+}
+
+#{$ns}-social-link__inst::before {
+    background-image: image-url("footer/icon-inst.svg");
+}
+
+#{$ns}-social-link__ytube::before {
+    background-image: image-url("footer/icon-ytube.svg");
+}
+
+#{$ns}-social-link__tel::before {
+    background-image: image-url("footer/icon-tel.svg");
+}
+
+@media only screen and (max-device-width: 1140px) {
+    #{$ns} {
+        padding: 1.4em 4% 7em 4%;
+        flex-wrap: wrap-reverse;
+        @include w320-767 {
+            padding-left: 6%;
+        }
+    }
+
+    #{$ns}-right {
+        padding: 2% 0;
+        margin: 0 auto;
+    }
+    #{$ns}-menu,
+    #{$ns}-imigize-io,
+    #{$ns}-social {
+        margin-right: 0;
+        margin-bottom: 2em;
+    }
+}
+
+@media only screen and (max-device-width: 618px) {
+    #{$ns}-right {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}
